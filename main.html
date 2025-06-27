@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>Gemini로 전문가 수준의 HTML 발표 자료 만들기</title>
+		<meta name="author" content="Gemini">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.css" id="theme">
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai.min.css">
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
+		<style>
+			/* * 사용자 피드백 반영: 커스텀 스타일
+			* - 제목(h1, h2, h3)의 줄 간격을 줄여 가독성 확보
+			* - 전체적인 폰트 및 여백 미세 조정
+			*/
+			.reveal {
+				font-family: 'Noto Sans KR', sans-serif;
+			}
+            
+			.reveal h1,
+			.reveal h2,
+			.reveal h3,
+			.reveal h4 {
+				font-family: 'Noto Sans KR', sans-serif;
+				font-weight: 700;
+				/* 대문자 변환 방지 */
+				text-transform: none;
+				/* ★★★ 핵심: 제목 줄 간격 조정 ★★★ */
+				line-height: 1.3;
+				/* 단어 단위 줄바꿈으로 가독성 향상 */
+				word-break: keep-all;
+			}
+
+			/* 제목 아래 여백 추가 */
+			.reveal h1 {
+				margin-bottom: 30px;
+			}
+			.reveal h2 {
+				margin-bottom: 40px;
+			}
+
+			/* 본문 텍스트 가독성 */
+			.reveal p, .reveal li {
+				line-height: 1.6;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				
+				<section>
+					<h1>Gemini로 전문가 수준의 HTML 발표 자료 만들기</h1>
+					<p style="margin-top: 50px;">A to Z 가이드</p>
+				</section>
+
+				<section>
+					<h2>왜 HTML로 발표하나요?</h2>
+					<ul>
+						<li class="fragment"><strong>플랫폼 독립성:</strong> 브라우저만 있으면 OK!</li>
+						<li class="fragment"><strong>높은 자유도:</strong> 상상하는 모든 디자인과 인터랙션 구현</li>
+						<li class="fragment"><strong>버전 관리:</strong> Git으로 체계적인 이력 관리</li>
+						<li class="fragment"><strong>웹 콘텐츠 내장:</strong> 유튜브, 인터랙티브 차트 등 자유롭게 삽입</li>
+						<li class="fragment"><strong>쉬운 공유:</strong> URL 하나로 간편하게 공유</li>
+					</ul>
+				</section>
+
+				<section>
+					<section>
+						<h2>1단계: 기획 및 구조화</h2>
+						<p>발표의 뼈대를 만드는 가장 중요한 단계<br><br>
+                        <strong class="fragment">"Gemini를 브레인스토밍 파트너로 활용하세요!"</strong></p>
+					</section>
+					<section>
+						<h3>Gemini 활용 프롬프트 예시</h3>
+						<ol>
+							<li style="margin-bottom: 15px;"><strong>주제/대상 정의:</strong> "나는 '주제'로 '대상'에게 발표할 거야. 핵심 목표 3가지를 정의해줘."</li>
+							<li style="margin-bottom: 15px;"><strong>목차 생성:</strong> "위 목표를 바탕으로 발표 목차 초안을 작성해줘."</li>
+							<li style="margin-bottom: 15px;"><strong>슬라이드별 메시지 도출:</strong> "목차 기반으로 슬라이드별 핵심 메시지를 요약해줘."</li>
+							<li><strong>발표 대본 초안 작성:</strong> "각 슬라이드 메시지를 바탕으로 발표 대본을 써줘."</li>
+						</ol>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>2단계: 프레임워크 선택 및 설정</h2>
+						<p>처음부터 만들 필요 없이, 검증된 도구를 활용하세요.</p>
+					</section>
+					<section>
+						<h3>추천 프레임워크: Reveal.js</h3>
+						<img src="https://revealjs.com/images/logo/reveal-white-text.svg" alt="Reveal.js Logo" style="height: 150px; border: none; background: none;">
+						<p>가장 인기 있고 기능이 막강한<br>HTML 발표 프레임워크</p>
+					</section>
+					<section>
+						<h3>기본 HTML 구조 (CDN)</h3>
+						<pre><code class="html" data-line-numbers="10-11,15,18">&lt;!doctype html&gt;
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;link rel="stylesheet" href="reveal.css"&gt;
+		&lt;link rel="stylesheet" href="theme/black.css"&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div class="reveal"&gt;
+			&lt;div class="slides"&gt;
+				&lt;section&gt;Slide 1&lt;/section&gt;
+				&lt;section&gt;Slide 2&lt;/section&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;script src="reveal.js"&gt;&lt;/script&gt;
+		&lt;script&gt;
+			Reveal.initialize();
+		&lt;/script&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+						</code></pre>
+					</section>
+				</section>
+				
+				<section>
+					<h2>3단계: Gemini로<br>콘텐츠/HTML 생성</h2>
+                    <p>기획 내용을 실제 슬라이드 코드로 변환</p>
+					<pre><code class="bash" style="font-size: 24px;">"아래 슬라이드 메시지를 Reveal.js의
+&lt;section&gt; 태그 HTML 코드로 만들어줘.
+
+- 슬라이드 1: ...
+- 슬라이드 2: ..."</code></pre>
+                    <p class="fragment" style="margin-top: 30px;">Gemini가 생성한 코드를 복사해서 붙여넣기만 하면 끝!</p>
+				</section>
+				
+				<section>
+					<h2>4단계: Gemini로<br>디자인/CSS 생성</h2>
+                    <p>나만의 맞춤 디자인 적용하기</p>
+					<pre><code class="bash" style="font-size: 24px;">"내 발표 자료 디자인을 커스터마이징하고 싶어.
+- 전체 배경색: #222
+- 강조 색상: #1E90FF
+- 글꼴: 'Noto Sans KR'
+위 요구사항에 맞는 CSS 코드를 작성해줘."</code></pre>
+				</section>
+
+				<section>
+					<h2>5단계: Gemini로<br>상호작용/JS 추가</h2>
+                    <p>HTML 발표의 꽃, 인터랙션!</p>
+                    <pre><code class="bash" style="font-size: 24px;">"Reveal.js에서 3번째 슬라이드에 진입했을 때
+'집중!'이라는 알림창을 띄우는
+JavaScript 코드를 작성해줘."</code></pre>
+                    <p class="fragment" style="margin-top: 30px;">정적인 발표에 동적인 재미를 더할 수 있습니다.</p>
+				</section>
+
+				<section>
+					<h2>6단계: 배포 및 공유</h2>
+					<p>완성된 발표 자료를 세상에 공개하기</p>
+                    <h3 class="fragment" style="margin-top: 40px;">추천: GitHub Pages</h3>
+					<ol class="fragment">
+						<li>GitHub 저장소 생성 및 코드 업로드</li>
+						<li>Settings &rarr; Pages 메뉴에서 배포 설정</li>
+						<li>생성된 URL (<code>*.github.io</code>) 공유</li>
+					</ol>
+				</section>
+
+				<section>
+					<h2>전문가 팁 & 주의사항</h2>
+					<ul>
+						<li class="fragment"><strong>반복과 개선:</strong> 한 번에 완벽을 기대하지 말고, 대화하며 결과물 다듬기</li>
+						<li class="fragment"><strong>사실 확인:</strong> AI가 생성한 통계, 전문 정보는 반드시 교차 검증</li>
+						<li class="fragment"><strong>발표자 노트 활용:</strong> <code>&lt;aside class="notes"&gt;</code> 태그와 'S' 키</li>
+						<li class="fragment"><strong>오프라인 대비:</strong> 인터넷이 불안하다면 모든 파일을 로컬에 저장</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Q & A</h2>
+					<p style="margin-top: 50px;">질문 있나요?</p>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+
+		<script>
+			// Reveal.js 초기화
+			Reveal.initialize({
+				hash: true,
+				plugins: [ RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
