@@ -47,7 +47,7 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             width: 100%;
             max-width: 900px;
-            max-height: 80vh;
+            max-height: 85vh; /* 모바일 높이 확보를 위해 살짝 늘림 */
             overflow-y: auto;
         }
         
@@ -97,7 +97,7 @@
         }
 
 
-        /* --- 콘텐츠 스타일 (기존과 동일) --- */
+        /* --- 콘텐츠 스타일 --- */
         h1, h2, h3 { color: #FFA000; margin-bottom: 0.5em; }
         h1 { font-size: 3.5em; text-align: center; }
         h2 { font-size: 2.5em; border-bottom: 3px solid #FFECB3; padding-bottom: 10px; }
@@ -115,6 +115,36 @@
         th { background-color: #FFF8E1; font-weight: bold; color: #FFA000; }
         .highlight { background-color: #FFF9C4; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
         .tip { font-size: 0.9em; color: #888; background-color: #FFFBEA; padding: 1em; border-radius: 8px; margin-top: 2em; }
+
+        /* --- 모바일 최적화 --- */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 1em;
+            }
+            .slide-content {
+                padding: 20px;
+                max-height: 90vh;
+            }
+            h1 { font-size: 2.5em; }
+            h2 { font-size: 1.8em; }
+            h3 { font-size: 1.3em; }
+            p, li { font-size: 1em; line-height: 1.6; }
+            .subtitle { font-size: 1.2em; }
+            .slide-number { top: 10px; right: 15px; font-size: 1em; }
+            pre { font-size: 0.8em; }
+            th, td { font-size: 0.75em; padding: 6px 4px; }
+            .nav-buttons {
+                bottom: 15px;
+                right: 15px;
+                display: flex;
+                flex-direction: column;
+            }
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+                margin: 5px 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -206,92 +236,20 @@ STT 결과: {stt_result}
         
         <div class="slide" id="slide6">
             <div class="slide-number">6 / 15</div>
-            <div class="slide-content" style="max-width: 1100px; display:flex; gap: 20px;">
+            <div class="slide-content" style="max-width: 1100px; display:flex; gap: 20px; flex-direction: column;">
                 <div style="flex:1;">
-                    <h3>V2: 사고의 연쇄 (CoT)</h3>
-                    <p>복잡한 문제를 단계별로 나누어<br>생각의 흐름을 유도합니다.</p>
-                    <pre><code># 목표
-아래 'STT 결과'에서 노이즈를 제거하고, 가장 의미 있는 핵심 가사 구절 3개에서 5개를 추출합니다.
-
-# 작업 절차 (단계별로 생각하세요)
-1.  노이즈 식별 및 제거
-2.  의미 단위 조합
-3.  핵심 구절 선정
-4.  최종 출력
-
-# STT 결과
-{stt_result}
-</code></pre>
-                </div>
-                <div style="flex:1;">
-                    <h3>V3: 예시 학습 (Few-Shot)</h3>
-                    <p>좋은 결과물의 예시(Shot)를 제공하여<br>원하는 패턴을 학습시킵니다.</p>
-                    <pre><code># 지침
-STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
-
----
-# 예시 1
-입력: 배우지만단 말이양...
-출력:
-마음 가는 그대로
-지금 내 손을 잡아봐
-
-# 예시 2
-입력: 아 진짜 사랑했다...
-출력:
-우리가 사랑했던
-그때 그 시절이
----
-
-# 실제 작업
-입력: {stt_result}
-</code></pre>
+                    <h3>V2: 사고의 연쇄 (CoT) & V3: 예시 학습 (Few-Shot)</h3>
+                    <p>복잡한 문제를 단계별로 나누어 생각의 흐름을 유도(CoT)하거나, 좋은 결과물의 예시(Few-Shot)를 제공하여 원하는 패턴을 학습시킵니다.</p>
                 </div>
             </div>
         </div>
 
         <div class="slide" id="slide7">
             <div class="slide-number">7 / 15</div>
-            <div class="slide-content" style="max-width: 1100px; display:flex; gap: 20px;">
+            <div class="slide-content" style="max-width: 1100px; display:flex; gap: 20px; flex-direction: column;">
                 <div style="flex:1;">
-                    <h3>V4: 페르소나 부여</h3>
-                    <p>전문가 역할을 부여하여<br>결과물의 품질과 스타일을 향상시킵니다.</p>
-                    <pre><code># 페르소나
-20년 경력의 베테랑 작사가.
-
-# 임무
-아래 '데모 STT 결과'에서 이상한 가사를 수정하여 '킬링 파트' 3~5 구절을 만들 것.
-
-# 제약 조건
-* 각 구절은 3~4 단어.
-* 부연 설명 없이 가사만 출력.
-
-# 데모 STT 결과
-{stt_result}
-</code></pre>
-                </div>
-                <div style="flex:1;">
-                    <h3>V5: 자체 검증 (Self-Verify)</h3>
-                    <p>결과물 생성 후, 정해진 규칙을 잘 지켰는지<br>스스로 검토하고 수정하게 합니다.</p>
-                    <pre><code># 최종 목표
-'STT 결과'에서 핵심 가사 3~5 구절 추출.
-
-# 출력 형식
-- 3~5 문장, 문장당 3~4 단어
-- 줄바꿈으로 구분
-- 정제된 가사만 출력
-
-# 작업 프로세스
-1. 초안 생성
-2. '검증 체크리스트' 통과 시까지 수정
-3. 최종 결과만 출력
-
-# 검증 체크리스트
-1. 문장 3~5개?
-2. 각 문장 3~4단어?
-3. 노이즈 제거됨?
-4. 출력 형식 준수?
-</code></pre>
+                    <h3>V4: 페르소나 부여 & V5: 자체 검증 (Self-Verify)</h3>
+                     <p>전문가 역할을 부여하여 결과물의 품질과 스타일을 향상(Persona)시키거나, 결과물 생성 후 정해진 규칙을 잘 지켰는지 스스로 검토하고 수정(Self-Verify)하게 합니다.</p>
                 </div>
             </div>
         </div>
@@ -402,13 +360,13 @@ STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
                 <table>
                     <thead>
                         <tr>
-                            <th>Prompt</th><th>Avg. Tokens</th><th>TC Success Rate</th><th>주요 특징</th>
+                            <th>Prompt (V5 기준)</th><th>Avg. Tokens</th><th>TC Success Rate</th><th>주요 특징</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>V5</td><td>255</td><td>95.2%</td><td>가장 높은 비용 (Baseline)</td></tr>
-                        <tr><td>V5-KOR-OPT</td><td>198</td><td>95.2%</td><td>준수한 비용 절감, 유지보수 용이</td></tr>
-                        <tr style="background-color: #FFF9C4;"><td><strong>V5-ENG-OPT</strong></td><td><strong>181</strong></td><td><strong>95.2%</strong></td><td><strong>최고의 성능 및 비용 효율</strong></td></tr>
+                        <tr><td>기본 한글</td><td>255</td><td>95.2%</td><td>가장 높은 비용 (Baseline)</td></tr>
+                        <tr><td>한글 최적화</td><td>198</td><td>95.2%</td><td>준수한 비용 절감, 유지보수 용이</td></tr>
+                        <tr style="background-color: #FFF9C4;"><td><strong>영문 최적화</strong></td><td><strong>181</strong></td><td><strong>95.2%</strong></td><td><strong>최고의 성능 및 비용 효율</strong></td></tr>
                     </tbody>
                 </table>
                 <h3>최종 결론</h3>
@@ -456,13 +414,14 @@ STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
 
             function showSlide(index) {
                 // 현재 슬라이드를 비활성화
-                slides[currentSlide].classList.remove('active');
+                if(slides[currentSlide]) slides[currentSlide].classList.remove('active');
                 
                 // 새 슬라이드 인덱스 업데이트
                 currentSlide = index;
 
                 // 새 슬라이드를 활성화
-                slides[currentSlide].classList.add('active');
+                if(slides[currentSlide]) slides[currentSlide].classList.add('active');
+
 
                 // 버튼 상태 업데이트
                 updateNavButtons();
