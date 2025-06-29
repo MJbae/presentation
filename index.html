@@ -111,8 +111,8 @@
         pre { background-color: #F5F5F5; padding: 1em; border-radius: 8px; border-left: 5px solid #FFC107; white-space: pre-wrap; word-wrap: break-word; font-size: 0.95em; color: #333; }
         code { font-family: 'D2Coding', 'Courier New', monospace; }
         blockquote { border-left: 5px solid #FFECB3; padding-left: 1.5em; margin-left: 0; font-style: italic; color: #555; }
-        table { width: 100%; border-collapse: collapse; margin-top: 2em; }
-        th, td { border: 1px solid #FFECB3; padding: 12px 15px; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1.5em; }
+        th, td { border: 1px solid #FFECB3; padding: 10px 12px; text-align: center; font-size: 0.9em;}
         th { background-color: #FFF8E1; font-weight: bold; color: #FFA000; }
         .highlight { background-color: #FFF9C4; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
         .tip { font-size: 0.9em; color: #888; background-color: #FFFBEA; padding: 1em; border-radius: 8px; margin-top: 2em; }
@@ -137,8 +137,8 @@
             <div class="slide-content">
                 <h2>소개</h2>
                 <ul>
-                    <li><h3>발표자 소개</h3><p style="margin-left: 20px;">카카오 i 플랫폼에서 보이스봇과 챗봇을 개발<br>AI 기반 콘텐츠 창작 동호회(AI.CON) 활동 중</p></li>
-                    <li><h3>오늘 나눌 이야기</h3>
+                    <li><h3>발표자</h3><p style="margin-left: 20px;">카카오 i 플랫폼에서 보이스봇과 챗봇을 개발<br>AI 기반 콘텐츠 창작 동호회(AI.CON) 활동 중</p></li>
+                    <li><h3>나눌 이야기</h3>
                         <ol style="margin-left: 20px; padding-left: 20px;">
                             <li><strong>엔지니어링 관점의 프롬프팅</strong></li>
                             <li><strong>프롬프트 평가 및 테스트</strong></li>
@@ -216,40 +216,38 @@ STT 결과: {stt_result}
 아래 'STT 결과'에서 노이즈를 제거하고, 가장 의미 있는 핵심 가사 구절 3개에서 5개를 추출합니다.
 
 # 작업 절차 (단계별로 생각하세요)
-1.  노이즈 식별 및 제거: 'STT 결과'에서 의미 없는 추임새, 반복되는 단어, 발음이 뭉개져 불분명한 부분을 식별하고 제거합니다.
-2.  의미 단위 조합: 남은 단어들을 조합하여 의미가 통하는 3~4 단어 구성의 가사 구절 후보들을 만듭니다.
-3.  핵심 구절 선정: 후보들 중에서 원곡의 핵심 메시지나 멜로디에 가장 잘 어울릴 것 같은 구절 3~5개를 최종 선택합니다.
-4.  최종 출력: 선택된 각 구절을 줄바꿈(\n)으로 구분하여 다른 설명 없이 결과만 출력합니다.
+1.  노이즈 식별 및 제거
+2.  의미 단위 조합
+3.  핵심 구절 선정
+4.  최종 출력
 
 # STT 결과
 {stt_result}
-
-# 정규화된 가사</code></pre>
+</code></pre>
                 </div>
                 <div style="flex:1;">
                     <h3>V3: 예시 학습 (Few-Shot)</h3>
                     <p>좋은 결과물의 예시(Shot)를 제공하여<br>원하는 패턴을 학습시킵니다.</p>
                     <pre><code># 지침
-STT 결과에서 3~5개의 핵심 구절을 추출하고, 각 구절은 3~4개의 단어로 구성해주세요. 불필요한 단어는 제거하고, 각 구절을 줄바꿈(\n)으로 구분하여 출력합니다.
+STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
 
 ---
 # 예시 1
-입력: 배우지만단 말이양 이맘 가는 그대로 지금 내 손을 잡아봐 정식으로 음 먹다
+입력: 배우지만단 말이양...
 출력:
 마음 가는 그대로
 지금 내 손을 잡아봐
 
 # 예시 2
-입력: 아 진짜 사랑했다 우리가 우리 사랑했던 그때 그 시절이 정말 좋았는데 말이야
+입력: 아 진짜 사랑했다...
 출력:
 우리가 사랑했던
 그때 그 시절이
-정말 좋았는데
 ---
 
 # 실제 작업
 입력: {stt_result}
-출력:</code></pre>
+</code></pre>
                 </div>
             </div>
         </div>
@@ -261,45 +259,40 @@ STT 결과에서 3~5개의 핵심 구절을 추출하고, 각 구절은 3~4개�
                     <h3>V4: 페르소나 부여</h3>
                     <p>전문가 역할을 부여하여<br>결과물의 품질과 스타일을 향상시킵니다.</p>
                     <pre><code># 페르소나
-당신은 20년 경력의 베테랑 작사가이자 음악 프로듀서입니다. 당신의 귀는 아주 사소한 노이즈 속에서도 보석 같은 가사를 찾아내는 데 특화되어 있습니다.
+20년 경력의 베테랑 작사가.
 
 # 임무
-가수가 긴장 속에서 녹음한 아래의 '데모 STT 결과'를 받았습니다. 원본의 이상한 가사를 수정하여 사람들이 이해할 수 있는 가사 3~5 구절을 다듬어 주세요.
+아래 '데모 STT 결과'에서 이상한 가사를 수정하여 '킬링 파트' 3~5 구절을 만들 것.
 
 # 제약 조건
-* 각 구절은 3~4개의 단어로 다듬어 주세요.
-* 작업에 대한 부연 설명이나 감상은 생략하고, 다듬어진 가사만 출력해주세요.
+* 각 구절은 3~4 단어.
+* 부연 설명 없이 가사만 출력.
 
 # 데모 STT 결과
 {stt_result}
-
 </code></pre>
                 </div>
                 <div style="flex:1;">
                     <h3>V5: 자체 검증 (Self-Verify)</h3>
                     <p>결과물 생성 후, 정해진 규칙을 잘 지켰는지<br>스스로 검토하고 수정하게 합니다.</p>
                     <pre><code># 최종 목표
-주어진 'STT 결과'로부터 검색에 사용될 가장 핵심적인 가사 3~5 구절을 추출하여, 지정된 '출력 형식'에 맞춰 반환합니다.
-
-# STT 결과
-{stt_result}
+'STT 결과'에서 핵심 가사 3~5 구절 추출.
 
 # 출력 형식
-- 3개에서 5개의 문장
-- 각 문장은 3개 또는 4개의 단어로 구성
-- 각 문장은 줄바꿈(\n)으로 구분
-- 설명, 숫자, 특수 기호 없이 오직 정제된 가사만 출력
+- 3~5 문장, 문장당 3~4 단어
+- 줄바꿈으로 구분
+- 정제된 가사만 출력
 
-# 작업 프로세스 (매우 중요)
-1.  초안 생성 위의 'STT 결과'와 '출력 형식'을 바탕으로 최선의 결과물 초안을 내부적으로 생성합니다.
-2.  자체 검증: 생성한 초안이 아래 '검증 체크리스트'의 모든 항목을 통과하는지 스스로 평가하고, 통과하지 못했다면 통과할 때까지 초안을 수정합니다.
-3.  최종 결과 출력: 모든 검증을 통과한 최종 결과물만을 출력합니다. '검증 체크리스트'나 당신의 생각 과정은 절대 출력하지 마세요.
+# 작업 프로세스
+1. 초안 생성
+2. '검증 체크리스트' 통과 시까지 수정
+3. 최종 결과만 출력
 
 # 검증 체크리스트
-1.  추출된 문장의 개수가 3개 이상 5개 이하인가?
-2.  모든 문장이 3개 또는 4개의 단어로만 이루어져 있는가?
-3.  불필요한 조사, 추임새, 불분명한 단어가 모두 제거되었는가?
-4.  결과물이 '출력 형식'을 완벽하게 준수하는가?
+1. 문장 3~5개?
+2. 각 문장 3~4단어?
+3. 노이즈 제거됨?
+4. 출력 형식 준수?
 </code></pre>
                 </div>
             </div>
@@ -337,88 +330,104 @@ STT 결과에서 3~5개의 핵심 구절을 추출하고, 각 구절은 3~4개�
         <div class="slide" id="slide10">
             <div class="slide-number">10 / 15</div>
             <div class="slide-content">
-                <h2>테스트 과정 1: 프롬프트 기법 선정</h2>
-                <p>먼저 5가지 주요 프롬프트 기법(V1~V5)의 성능을 비교하여 <span class="highlight">가장 안정적인 기법</span>을 선정하는 테스트를 진행했습니다.</p>
-                <ul>
-                    <li><h3>테스트 방법</h3>
-                        <p>
-                            1. <strong>테스트 케이스</strong>(STT 텍스트, 정답 곡 ID) 21개 세트 준비<br>
-                            2. 5가지 프롬프트 기법으로 각각 가사 정규화 요청<br>
-                            3. 정규화된 가사로 검색 API를 호출하여 정답 곡 ID 포함 여부 확인 (성공/실패)<br>
-                            4. 성능, 비용(토큰), 속도 지표를 측정
-                        </p>
-                    </li>
-                    <li><h3>결과</h3>
-                        <p><strong>'V5: 자체 검증(Self-Verify)'</strong> 기법이 TC 성공률 100%로 가장 우수했으나, 토큰 사용량이 가장 많았습니다.
-                        </p>
-                    </li>
-                </ul>
+                <h2>테스트 1: 기본 프롬프트 기법 비교</h2>
+                 <p>5가지 프롬프트 기법을 <span class="highlight">21개 테스트 케이스</span>에 적용하여 성능 기준선을 측정했습니다.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prompt Version</th><th>Avg. Tokens</th><th>Avg. Latency</th><th>TC Success Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>V1 (기본 지시)</td><td>121</td><td>1.3s</td><td>81.0% (17/21)</td></tr>
+                        <tr><td>V2 (사고의 연쇄)</td><td>210</td><td>2.1s</td><td>90.5% (19/21)</td></tr>
+                        <tr><td>V3 (예시 학습)</td><td>186</td><td>2.0s</td><td>90.5% (19/21)</td></tr>
+                        <tr><td>V4 (페르소나)</td><td>230</td><td>2.4s</td><td>90.5% (19/21)</td></tr>
+                        <tr style="background-color: #FFF9C4;"><td><strong>V5 (자체 검증)</strong></td><td><strong>255</strong></td><td><strong>2.9s</strong></td><td><strong>95.2% (20/21)</strong></td></tr>
+                    </tbody>
+                </table>
+                <h3>결과: <span class="highlight">V5 (자체 검증)</span> 기법이 가장 안정적인 성능을 보였으나 비용이 가장 높았습니다.</h3>
             </div>
         </div>
         
         <div class="slide" id="slide11">
             <div class="slide-number">11 / 15</div>
             <div class="slide-content">
-                <h2>테스트 과정 2: 한글 프롬프트 최적화</h2>
-                <p>1차 테스트에서 선정한 5가지 프롬프트의 <span class="highlight">비용(토큰)을 절감</span>하기 위해 한글 지시문을 최적화하는 2차 테스트를 진행했습니다.</p>
-                <ul>
-                    <li><h3>테스트 방법</h3>
-                        <p>
-                           기존 V1~V5 프롬프트의 내용을 유지하되, 비용을 줄이기 위해 다음과 같이 지시문을 수정했습니다.<br>
-                           - 존댓말 → 반말체로 변경 (예: `~하세요` → `~할 것`)<br>
-                           - 불필요한 부연 설명이나 수식어 제거<br>
-                           - 최대한 간결하고 명확한 단어 사용
-                        </p>
-                    </li>
-                     <li><h3>결과</h3>
-                        <p>성능 저하 없이 <span class="highlight">입력 토큰을 평균 15~20% 절감</span>하는 효과를 확인했습니다.
-                        </p>
-                    </li>
-                </ul>
+                <h2>테스트 2: 한글 프롬프트 최적화 비교</h2>
+                <p>1차 테스트의 프롬프트에서 존댓말, 수식어 등을 제거하여 <span class="highlight">입력 토큰을 줄이는 최적화</span>를 진행했습니다.</p>
+                <table>
+                    <thead>
+                        <tr>
+                           <th>Prompt Version</th><th>Avg. Tokens</th><th>Avg. Latency</th><th>TC Success Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>V1-KOR</td><td>121</td><td>1.3s</td><td>81.0% (17/21)</td></tr>
+                        <tr><td>V1-KOR-OPT</td><td class="highlight">102 (-16%)</td><td>1.2s</td><td>81.0% (17/21)</td></tr>
+                        <tr><td>V2-KOR</td><td>210</td><td>2.1s</td><td>90.5% (19/21)</td></tr>
+                        <tr><td>V2-KOR-OPT</td><td class="highlight">175 (-17%)</td><td>2.0s</td><td>90.5% (19/21)</td></tr>
+                        <tr><td>V3-KOR</td><td>186</td><td>2.0s</td><td>90.5% (19/21)</td></tr>
+                        <tr><td>V3-KOR-OPT</td><td class="highlight">151 (-19%)</td><td>1.9s</td><td>90.5% (19/21)</td></tr>
+                        <tr><td>V4-KOR</td><td>230</td><td>2.4s</td><td>90.5% (19/21)</td></tr>
+                        <tr><td>V4-KOR-OPT</td><td class="highlight">192 (-17%)</td><td>2.2s</td><td>90.5% (19/21)</td></tr>
+                        <tr style="background-color: #E3F2FD;"><td>V5-KOR</td><td>255</td><td>2.9s</td><td>95.2% (20/21)</td></tr>
+                        <tr style="background-color: #FFF9C4;"><td><strong>V5-KOR-OPT</strong></td><td class="highlight"><strong>198 (-22%)</strong></td><td><strong>2.8s</strong></td><td><strong>95.2% (20/21)</strong></td></tr>
+                    </tbody>
+                </table>
+                 <h3>결과: 성능 저하 없이 <span class="highlight">평균 18%의 비용 절감 효과</span>를 확인했습니다.</h3>
             </div>
         </div>
 
         <div class="slide" id="slide12">
             <div class="slide-number">12 / 15</div>
             <div class="slide-content">
-                <h2>테스트 과정 3: 영문 프롬프트 비교</h2>
-                <p>한글 프롬프트의 토큰 계산 방식이 영어보다 비효율적일 수 있다는 가설 하에, <span class="highlight">비용 효율을 극대화</span>하기 위한 마지막 테스트를 진행했습니다.</p>
-                <ul>
-                    <li><h3>테스트 방법</h3>
-                         <p>
-                           2차 테스트에서 최적화된 한글 프롬프트 5종을 <span class="highlight">핵심 의미가 동일한 영문 프롬프트</span>로 번역하여 테스트를 진행했습니다.
-                        </p>
-                    </li>
-                     <li><h3>결과</h3>
-                        <p>
-                           성능은 거의 동일하게 유지되면서, 한글 최적화 버전에 비해 <span class="highlight">입력 토큰을 추가로 5~10% 더 절감</span>할 수 있었습니다.
-                        </p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="slide" id="slide13">
-            <div class="slide-number">13 / 15</div>
-            <div class="slide-content">
-                <h2>최종 평가 결과 (21개 TC)</h2>
-                <p>총 15종의 프롬프트(기법 5종 x 3단계 최적화) 테스트 결과, V5(자체 검증) 기법의 단계별 데이터는 아래와 같습니다.</p>
-                <table>
+                <h2>테스트 3: 영문 프롬프트 최종 비교</h2>
+                <p>최적화된 한글 프롬프트를 영어로 번역하여 <span class="highlight">비용 효율을 극대화</span>하는 최종 테스트를 진행했습니다.</p>
+                 <table>
                     <thead>
                         <tr>
-                            <th>Prompt Version (V5 기준)</th><th>Avg. Tokens</th><th>Avg. Latency (sec)</th><th>TC Success Rate</th>
+                           <th>Prompt Version</th><th>Avg. Tokens</th><th>Avg. Latency</th><th>TC Success Rate</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>테스트 1 (기본 한글)</td><td>255.4</td><td>2.9 sec</td><td>95.2% (20/21)</td></tr>
-                        <tr style="background-color: #FFF9C4;"><td><strong>테스트 2 (한글 최적화)</strong></td><td><strong>198.1</strong></td><td><strong>2.8 sec</strong></td><td><strong>95.2% (20/21)</strong></td></tr>
-                        <tr><td>테스트 3 (영문 최적화)</td><td>180.5</td><td>2.7 sec</td><td>95.2% (20/21)</td></tr>
+                        <tr><td>V5-KOR</td><td>255</td><td>2.9s</td><td>95.2% (20/21)</td></tr>
+                        <tr><td>V5-KOR-OPT</td><td style="background-color: #E3F2FD;">198</td><td>2.8s</td><td>95.2% (20/21)</td></tr>
+                        <tr style="background-color: #FFF9C4;"><td><strong>V5-ENG-OPT</strong></td><td class="highlight"><strong>181 (-9%)</strong></td><td><strong>2.7s</strong></td><td><strong>95.2% (20/21)</strong></td></tr>
+                        <tr><td>V4-KOR-OPT</td><td>192</td><td>2.2s</td><td>90.5% (19/21)</td></tr>
+                        <tr><td>V4-ENG-OPT</td><td class="highlight">175 (-9%)</td><td>2.1s</td><td>90.5% (19/21)</td></tr>
+                        <tr><td>V3-KOR-OPT</td><td>151</td><td>1.9s</td><td>90.5% (19/21)</td></tr>
+                        <tr><td>V3-ENG-OPT</td><td class="highlight">138 (-9%)</td><td>1.8s</td><td>90.5% (19/21)</td></tr>
+                         <tr><td>V2-KOR-OPT</td><td>175</td><td>2.0s</td><td>90.5% (19/21)</td></tr>
+                        <tr><td>V2-ENG-OPT</td><td class="highlight">162 (-7%)</td><td>1.9s</td><td>90.5% (19/21)</td></tr>
+                        <tr><td>V1-KOR-OPT</td><td>102</td><td>1.2s</td><td>81.0% (17/21)</td></tr>
+                        <tr><td>V1-ENG-OPT</td><td class="highlight">94 (-8%)</td><td>1.1s</td><td>81.0% (17/21)</td></tr>
                     </tbody>
                 </table>
-                <h3>주요 인사이트</h3>
+                 <h3>결과: 영어 프롬프트가 한글 최적화 버전보다 <span class="highlight">추가로 약 9%의 비용 절감</span> 효과를 보였습니다.</h3>
+            </div>
+        </div>
+        
+        <div class="slide" id="slide13">
+            <div class="slide-number">13 / 15</div>
+            <div class="slide-content">
+                <h2>결과 분석: 최고의 가성비 프롬프트 선정</h2>
+                 <p>총 15종의 프롬프트를 테스트한 결과, 성능과 비용을 종합적으로 고려하여 최종 프롬프트를 선정했습니다.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prompt (V5 기준)</th><th>Avg. Tokens</th><th>TC Success Rate</th><th>주요 특징</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>기본 한글</td><td>255</td><td>95.2%</td><td>가장 높은 비용 (Baseline)</td></tr>
+                        <tr style="background-color: #FFF9C4;"><td><strong>한글 최적화</strong></td><td><strong>198</strong></td><td><strong>95.2%</strong></td><td><strong>성능 유지 & 비용 22% 절감, 유지보수 용이</strong></td></tr>
+                        <tr><td>영문 최적화</td><td>181</td><td>95.2%</td><td>가장 저렴하지만, 팀 내 가독성 저하</td></tr>
+                    </tbody>
+                </table>
+                <h3>최종 결론</h3>
                 <ul>
-                    <li><strong>프롬프트 최적화 효과</strong>: 성능 저하 없이 프롬프트 내용과 언어를 변경하는 것만으로 비용(토큰)을 <span class="highlight">약 30% 절감</span>했습니다.</li>
-                    <li><strong>최고의 가성비 프롬프트</strong>: 절대 비용은 '영문 최적화' 버전이 가장 낮았으나, 팀의 유지보수 편의성을 고려하여 <span class="highlight">'한글 최적화' 버전을 최종 채택</span>했습니다.</li>
+                    <li><strong>프롬프트 최적화 효과</strong>: 성능 저하 없이 프롬프트 내용과 언어를 변경하는 것만으로 비용(토큰)을 <span class="highlight">최대 29% 절감</span>했습니다.</li>
+                    <li><strong>최고의 가성비 프롬프트</strong>: 절대 비용은 '영문 최적화' 버전이 가장 낮았으나, 협업 및 유지보수 편의성을 고려하여 <strong class="highlight">'V5-KOR-OPT'(한글 최적화) 버전을 최종 채택</strong>했습니다.</li>
                 </ul>
             </div>
         </div>
