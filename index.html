@@ -298,7 +298,7 @@ STT 결과: "{stt_result}"
 # 작업 프로세스 (매우 중요)
 1.  **초안 생성:** 위의 'STT 결과'와 '출력 형식'을 바탕으로 최선의 결과물 초안을 내부적으로 생성합니다.
 2.  **자체 검증:** 생성한 초안이 아래 '검증 체크리스트'의 모든 항목을 통과하는지 스스로 평가하고, 통과하지 못했다면 통과할 때까지 초안을 수정합니다.
-3.  **최종 결과 출력:** 모든 검증을 통과한 최종 결과물만을 출력합니다.
+3.  **최종 결과 출력:** 모든 검증을 통과한 최종 결과물만을 출력합니다. '검증 체크리스트'나 당신의 생각 과정은 절대 출력하지 마세요.
 
 # 검증 체크리스트
 1.  추출된 문장의 개수가 3개 이상 5개 이하인가? (예/아니오)
@@ -315,7 +315,7 @@ STT 결과: "{stt_result}"
             <div class="slide-number">8 / 14</div>
             <div class="slide-content">
                 <h2>평가 방법: 정량적 평가 지표</h2>
-                <p>좋은 프롬프트란 무엇일까요? 본 프로젝트에서는 자동화된 측정이 가능한 <span class="highlight">정량적 지표</span>를 핵심 기준으로 삼았습니다.</p>
+                <p>본 프로젝트에서는 자동화된 측정이 가능한 <span class="highlight">정량적 지표</span>를 핵심 평가 기준으로 삼았습니다. 이는 객관적이고 일관된 비교를 가능하게 합니다.</p>
                 <div style="max-width: 500px; margin: 2em auto;">
                     <h3>주요 정량 지표</h3>
                     <p>숫자로 명확하게 측정 가능한 품질 및 효율 지표입니다.</p>
@@ -402,7 +402,7 @@ STT 결과: "{stt_result}"
                 <table>
                     <thead>
                         <tr>
-                            <th>Prompt Version</th><th>Avg. Tokens</th><th>Avg. Latency (sec)</th><th>TC Success Rate</th><th>주요 특징</th>
+                  _BOS_       <th>Prompt Version</th><th>Avg. Tokens</th><th>Avg. Latency (sec)</th><th>TC Success Rate</th><th>주요 특징</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -458,13 +458,13 @@ STT 결과: "{stt_result}"
 
             function showSlide(index) {
                 // 현재 슬라이드를 비활성화
-                if(slides[currentSlide]) slides[currentSlide].classList.remove('active');
+                slides[currentSlide].classList.remove('active');
                 
                 // 새 슬라이드 인덱스 업데이트
                 currentSlide = index;
 
                 // 새 슬라이드를 활성화
-                if(slides[currentSlide]) slides[currentSlide].classList.add('active');
+                slides[currentSlide].classList.add('active');
 
                 // 버튼 상태 업데이트
                 updateNavButtons();
