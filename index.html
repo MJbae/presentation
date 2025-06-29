@@ -168,19 +168,19 @@
             <div class="slide-number">4 / 12</div>
             <div class="slide-content">
                 <h2>LLM 음악검색 프로젝트 소개</h2>
-                <ul>
-                    <li><strong>목표</strong>: 차 안에서 들리는 노래 일부만으로 원하는 곡을 정확히 찾아 정보 제공하기.</li>
-                    <li><strong>핵심 과제</strong>: <span class="highlight">STT 출력 텍스트의 정규화 (Normalization)</span>
-                        <p>음성인식(STT) 결과물은 노이즈가 많고 불완전합니다. <br> 예: <code>"배우지만단 말이양 이맘 가는 그대로 지금 내 손을 잡아봐"</code><br> 이러한 텍스트를 LLM으로 정제하여, 검색 가능한 가사로 만들어야 합니다.</p>
-                    </li>
-                    <li><strong>전체 프로세스</strong>
+                   <li><strong>주요 프로세스</strong>
                         <p style="text-align:center; font-size:1.2em; margin-top: 1em;">
                             <span style="background-color:#FFECB3; padding: 10px; border-radius: 8px;">음성 입력</span> ➔ 
                             <span style="background-color:#FFECB3; padding: 10px; border-radius: 8px;">STT</span> ➔ 
-                            <span style="background-color:#FFD54F; padding: 10px; border-radius: 8px; font-weight:bold;">LLM 정규화</span> ➔ 
-                            <span style="background-color:#FFECB3; padding: 10px; border-radius: 8px;">가사 검색</span> ➔ 
+                            <span style="background-color:#FFD54F; padding: 10px; border-radius: 8px; font-weight:bold;">STT 결과 정규화</span> ➔ 
+                            <span style="background-color:#FFECB3; padding: 10px; border-radius: 8px;">가사 기반 곡 검색</span> ➔ 
                             <span style="background-color:#FFECB3; padding: 10px; border-radius: 8px;">결과 제공</span>
                         </p>
+                    </li>
+                <ul>
+                    <li><strong>목표</strong>: 차 안에서 들리는 노래 일부만으로 원하는 곡을 정확히 찾아 정보 제공하기.</li>
+                    <li><strong>핵심 과제</strong>: <span class="highlight">STT 출력 텍스트의 정규화 (Normalization)</span>
+                        <p>음성인식(STT) 결과물은 노이즈가 많고 불완전합니다. <br> 예: <code>"배우지만단 말이양 이맘 가는 그대로 지금 내 손을 잡아봐"</code></p>
                     </li>
                 </ul>
             </div>
