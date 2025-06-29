@@ -1,200 +1,409 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-	<head>
-		<meta charset="utf-8">
-		<title>Gemini로 전문가 수준의 HTML 발표 자료 만들기</title>
-		<meta name="author" content="Gemini">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프롬프트 엔지니어링: LLM 기반 음악검색 PoC 활용하기</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #FFFDE7; /* Very light yellow */
+            color: #424242; /* Dark grey */
+            margin: 0;
+            padding: 0;
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+        }
+        .slide {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2em 4em;
+            box-sizing: border-box;
+            border-bottom: 1px solid #FFD54F; /* Light yellow */
+            scroll-snap-align: start;
+            position: relative;
+        }
+        .slide-content {
+            background-color: #FFFFFF;
+            border-radius: 15px;
+            padding: 40px 60px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 900px;
+        }
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #FFC107; /* Amber */
+        }
+        h1, h2, h3 {
+            color: #FFA000; /* Orange */
+            margin-bottom: 0.5em;
+        }
+        h1 { font-size: 3.5em; text-align: center; }
+        h2 { font-size: 2.5em; border-bottom: 3px solid #FFECB3; padding-bottom: 10px; }
+        h3 { font-size: 1.6em; color: #FFB300; }
+        p, li {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            padding-left: 1.5em;
+            position: relative;
+        }
+        li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #FFC107;
+            font-weight: bold;
+        }
+        .subtitle {
+            font-size: 1.5em;
+            color: #757575;
+            text-align: center;
+            margin-top: 0;
+        }
+        .meta-info {
+            text-align: center;
+            margin-top: 3em;
+            font-size: 1.2em;
+            color: #616161;
+        }
+        pre {
+            background-color: #F5F5F5;
+            padding: 1em;
+            border-radius: 8px;
+            border-left: 5px solid #FFC107;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 0.95em;
+            color: #333;
+        }
+        code {
+            font-family: 'D2Coding', 'Courier New', monospace;
+        }
+        blockquote {
+            border-left: 5px solid #FFECB3;
+            padding-left: 1.5em;
+            margin-left: 0;
+            font-style: italic;
+            color: #555;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2em;
+        }
+        th, td {
+            border: 1px solid #FFECB3;
+            padding: 12px 15px;
+            text-align: center;
+        }
+        th {
+            background-color: #FFF8E1;
+            font-weight: bold;
+            color: #FFA000;
+        }
+        .highlight {
+            background-color: #FFF9C4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .tip {
+            font-size: 0.9em;
+            color: #888;
+            background-color: #FFFBEA;
+            padding: 1em;
+            border-radius: 8px;
+            margin-top: 2em;
+        }
+    </style>
+</head>
+<body>
 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
-		
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.css" id="theme">
+    <div class="slide" id="slide1">
+        <div class="slide-number">1 / 12</div>
+        <div style="text-align: center;">
+            <h1 style="font-size: 4.5em;">프롬프트 엔지니어링</h1>
+            <p class="subtitle">LLM 기반 음악검색 PoC에 활용하기</p>
+            <div class="meta-info">
+                <p><strong>AX개발2팀｜ 맥스</strong></p>
+                <p>2025년 6월</p>
+            </div>
+        </div>
+    </div>
 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai.min.css">
-		
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <div class="slide" id="slide2">
+        <div class="slide-number">2 / 12</div>
+        <div class="slide-content">
+            <h2>발표자 및 오늘의 주제</h2>
+            <ul>
+                <li>
+                    <h3>발표자: AX개발2팀 맥스</h3>
+                    <p style="margin-left: 20px;">카카오 i 플랫폼에서 보이스봇과 챗봇을 개발하고 있습니다.<br>AI 기반 콘텐츠 창작 동호회(AI.CON)에서도 활동 중입니다.</p>
+                </li>
+                <li>
+                    <h3>오늘 나눌 이야기</h3>
+                    <ol style="margin-left: 20px; padding-left: 20px;">
+                        <li><strong>엔지니어 관점의 프롬프트 최적화 방법</strong><br><small>다양한 프롬프트 기법과 실제 적용 예시</small></li>
+                        <li><strong>체계적인 프롬프트 평가 및 테스트</strong><br><small>무엇을, 어떻게, 어떤 기준으로 평가했는가?</small></li>
+                        <li><strong>실무 적용 사례 및 결론</strong><br><small>PoC 결과와 여기서 얻은 교훈</small></li>
+                    </ol>
+                </li>
+            </ul>
+             <p class="tip">💡 <strong>CoP 운영지원금 팁:</strong> OpenAI API 크레딧을 활용하면 테스트 비용 부담을 줄일 수 있습니다.</p>
+        </div>
+    </div>
 
-		<style>
-			/* * 사용자 피드백 반영: 커스텀 스타일
-			* - 제목(h1, h2, h3)의 줄 간격을 줄여 가독성 확보
-			* - 전체적인 폰트 및 여백 미세 조정
-			*/
-			.reveal {
-				font-family: 'Noto Sans KR', sans-serif;
-			}
-            
-			.reveal h1,
-			.reveal h2,
-			.reveal h3,
-			.reveal h4 {
-				font-family: 'Noto Sans KR', sans-serif;
-				font-weight: 700;
-				/* 대문자 변환 방지 */
-				text-transform: none;
-				/* ★★★ 핵심: 제목 줄 간격 조정 ★★★ */
-				line-height: 1.3;
-				/* 단어 단위 줄바꿈으로 가독성 향상 */
-				word-break: keep-all;
-			}
+    <div class="slide" id="slide3">
+        <div class="slide-number">3 / 12</div>
+        <div class="slide-content">
+            <h2>프롬프트 엔지니어링이란?</h2>
+            <blockquote>"The application of <strong>science</strong> to the optimum conversion of the <strong>resources</strong> of nature to the <strong>uses</strong> of humankind."<br>- Encyclopedia Britannica</blockquote>
+            <p>엔지니어링은 '과학'을 응용하여 '자원'을 '목적'에 맞게 '최적화'하는 것입니다.</p>
+            <ul>
+                <li><strong>과학의 응용 (Science)</strong>: 가설 수립 → 테스트 → 평가의 끊임없는 반복(Iteration)</li>
+                <li><strong>목적 (Uses)</strong>: 원하는 의도대로, 정확하고 일관된 답변을 얻는 것</li>
+                <li><strong>자원의 최적화 (Resources)</strong>: LLM 입출력에 드는 비용(토큰, 시간)을 최소화하는 것</li>
+            </ul>
+            <p>결론적으로 프롬프트 엔지니어링은, <span class="highlight">"가설과 검증을 통해, 최소 비용으로 최고의 LLM 결과물을 만드는 과학적 접근법"</span>입니다.</p>
+        </div>
+    </div>
 
-			/* 제목 아래 여백 추가 */
-			.reveal h1 {
-				margin-bottom: 30px;
-			}
-			.reveal h2 {
-				margin-bottom: 40px;
-			}
+    <div class="slide" id="slide4">
+        <div class="slide-number">4 / 12</div>
+        <div class="slide-content">
+            <h2>LLM 음악검색 프로젝트 소개</h2>
+            <ul>
+                <li><strong>목표</strong>: 차 안에서 들리는 노래 일부만으로 원하는 곡을 정확히 찾아 정보 제공하기.</li>
+                <li>
+                    <strong>핵심 과제</strong>: <span class="highlight">STT 출력 텍스트의 정규화 (Normalization)</span>
+                    <p>음성인식(STT) 결과물은 노이즈가 많고 불완전합니다. <br>
+                    예: <code>"배우지만단 말이양 이맘 가는 그대로 지금 내 손을 잡아봐"</code><br>
+                    이러한 텍스트를 LLM으로 정제하여, 검색 가능한 가사로 만들어야 합니다.</p>
+                </li>
+                 <li>
+                    <strong>전체 프로세스</strong>
+                    <p style="text-align:center; font-size:1.2em; margin-top: 1em;">
+                        <span style="background-color:#FFECB3; padding: 10px; border-radius: 8px;">음성 입력</span> ➔ 
+                        <span style="background-color:#FFECB3; padding: 10px; border-radius: 8px;">STT</span> ➔ 
+                        <span style="background-color:#FFD54F; padding: 10px; border-radius: 8px; font-weight:bold;">LLM 정규화</span> ➔ 
+                        <span style="background-color:#FFECB3; padding: 10px; border-radius: 8px;">가사 검색</span> ➔ 
+                        <span style="background-color:#FFECB3; padding: 10px; border-radius: 8px;">결과 제공</span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="slide" id="slide5">
+        <div class="slide-number">5 / 12</div>
+        <div class="slide-content">
+            <h2>프롬프트 기법 V1: 기본 지시형 (As-Is)</h2>
+            <ul>
+                <li><strong>특징</strong>: 해야 할 일을 명확하고 단순하게 나열하여 지시합니다.</li>
+                <li><strong>기대 효과</strong>: 가장 기본적인 성능의 기준선(Baseline) 역할을 합니다.</li>
+            </ul>
+            <h3>예시 프롬프트 (<code>V1_AS_IS</code>)</h3>
+            <pre><code>"""
+아래 입력으로 주어진 'STT 결과'로부터 3~5개의 문장을 추출하세요.
+각 문장은 3~4단어로 구성되어야 합니다.
+문장 간 중복이 발생해도 괜찮지만, 불필요한 조사나 불분명한 단어는 제거하세요.
+문장부호(쉼표, 느낌표 등)가 있으면 적절히 제거하거나 반영하여 자연스럽게 다듬으세요.
 
-			/* 본문 텍스트 가독성 */
-			.reveal p, .reveal li {
-				line-height: 1.6;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				
-				<section>
-					<h1>Gemini로 전문가 수준의 HTML 발표 자료 만들기</h1>
-					<p style="margin-top: 50px;">A to Z 가이드</p>
-				</section>
+STT 결과: "{stt_result}"
 
-				<section>
-					<h2>왜 HTML로 발표하나요?</h2>
-					<ul>
-						<li class="fragment"><strong>플랫폼 독립성:</strong> 브라우저만 있으면 OK!</li>
-						<li class="fragment"><strong>높은 자유도:</strong> 상상하는 모든 디자인과 인터랙션 구현</li>
-						<li class="fragment"><strong>버전 관리:</strong> Git으로 체계적인 이력 관리</li>
-						<li class="fragment"><strong>웹 콘텐츠 내장:</strong> 유튜브, 인터랙티브 차트 등 자유롭게 삽입</li>
-						<li class="fragment"><strong>쉬운 공유:</strong> URL 하나로 간편하게 공유</li>
-					</ul>
-				</section>
+출력 형식: 각 문장을 줄바꿈(\\n)으로 구분한 형태로만 출력해주세요.
+"""</code></pre>
+        </div>
+    </div>
+    
+    <div class="slide" id="slide6">
+        <div class="slide-number">6 / 12</div>
+        <div class="slide-content" style="max-width: 1100px; display:flex; gap: 20px;">
+            <div style="flex:1;">
+                <h3>V2: Chain of Thought (사고의 연쇄)</h3>
+                <p>복잡한 문제를 단계별로 나누어<br>생각의 흐름을 유도합니다.</p>
+                <pre><code>"""
+# 작업 절차 (단계별로 생각하세요)
+1. 노이즈 식별 및 제거: ...
+2. 의미 단위 조합: ...
+3. 핵심 구절 선정: ...
+4. 최종 출력: ...
 
-				<section>
-					<section>
-						<h2>1단계: 기획 및 구조화</h2>
-						<p>발표의 뼈대를 만드는 가장 중요한 단계<br><br>
-                        <strong class="fragment">"Gemini를 브레인스토밍 파트너로 활용하세요!"</strong></p>
-					</section>
-					<section>
-						<h3>Gemini 활용 프롬프트 예시</h3>
-						<ol>
-							<li style="margin-bottom: 15px;"><strong>주제/대상 정의:</strong> "나는 '주제'로 '대상'에게 발표할 거야. 핵심 목표 3가지를 정의해줘."</li>
-							<li style="margin-bottom: 15px;"><strong>목차 생성:</strong> "위 목표를 바탕으로 발표 목차 초안을 작성해줘."</li>
-							<li style="margin-bottom: 15px;"><strong>슬라이드별 메시지 도출:</strong> "목차 기반으로 슬라이드별 핵심 메시지를 요약해줘."</li>
-							<li><strong>발표 대본 초안 작성:</strong> "각 슬라이드 메시지를 바탕으로 발표 대본을 써줘."</li>
-						</ol>
-					</section>
-				</section>
+# STT 결과
+{stt_result}
+"""</code></pre>
+            </div>
+            <div style="flex:1;">
+                <h3>V3: Few-Shot Learning (소수 예시 학습)</h3>
+                <p>좋은 결과물의 예시(Shot)를 2~3개 제공하여<br>원하는 패턴을 학습시킵니다.</p>
+                <pre><code>"""
+# 예시 1
+입력: 배우지만단 말이양...
+출력:
+마음 가는 그대로
+지금 내 손을 잡아봐
 
-				<section>
-					<section>
-						<h2>2단계: 프레임워크 선택 및 설정</h2>
-						<p>처음부터 만들 필요 없이, 검증된 도구를 활용하세요.</p>
-					</section>
-					<section>
-						<h3>추천 프레임워크: Reveal.js</h3>
-						<img src="https://revealjs.com/images/logo/reveal-white-text.svg" alt="Reveal.js Logo" style="height: 150px; border: none; background: none;">
-						<p>가장 인기 있고 기능이 막강한<br>HTML 발표 프레임워크</p>
-					</section>
-					<section>
-						<h3>기본 HTML 구조 (CDN)</h3>
-						<pre><code class="html" data-line-numbers="10-11,15,18">&lt;!doctype html&gt;
-&lt;html&gt;
-	&lt;head&gt;
-		&lt;link rel="stylesheet" href="reveal.css"&gt;
-		&lt;link rel="stylesheet" href="theme/black.css"&gt;
-	&lt;/head&gt;
-	&lt;body&gt;
-		&lt;div class="reveal"&gt;
-			&lt;div class="slides"&gt;
-				&lt;section&gt;Slide 1&lt;/section&gt;
-				&lt;section&gt;Slide 2&lt;/section&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-		&lt;script src="reveal.js"&gt;&lt;/script&gt;
-		&lt;script&gt;
-			Reveal.initialize();
-		&lt;/script&gt;
-	&lt;/body&gt;
-&lt;/html&gt;
-						</code></pre>
-					</section>
-				</section>
-				
-				<section>
-					<h2>3단계: Gemini로<br>콘텐츠/HTML 생성</h2>
-                    <p>기획 내용을 실제 슬라이드 코드로 변환</p>
-					<pre><code class="bash" style="font-size: 24px;">"아래 슬라이드 메시지를 Reveal.js의
-&lt;section&gt; 태그 HTML 코드로 만들어줘.
+# 예시 2
+입력: 아 진짜 사랑했다...
+출력:
+우리가 사랑했던
+그때 그 시절이
+---
+# 실제 작업
+입력: {stt_result}
+"""</code></pre>
+            </div>
+        </div>
+    </div>
 
-- 슬라이드 1: ...
-- 슬라이드 2: ..."</code></pre>
-                    <p class="fragment" style="margin-top: 30px;">Gemini가 생성한 코드를 복사해서 붙여넣기만 하면 끝!</p>
-				</section>
-				
-				<section>
-					<h2>4단계: Gemini로<br>디자인/CSS 생성</h2>
-                    <p>나만의 맞춤 디자인 적용하기</p>
-					<pre><code class="bash" style="font-size: 24px;">"내 발표 자료 디자인을 커스터마이징하고 싶어.
-- 전체 배경색: #222
-- 강조 색상: #1E90FF
-- 글꼴: 'Noto Sans KR'
-위 요구사항에 맞는 CSS 코드를 작성해줘."</code></pre>
-				</section>
+    <div class="slide" id="slide7">
+        <div class="slide-number">7 / 12</div>
+        <div class="slide-content" style="max-width: 1100px; display:flex; gap: 20px;">
+            <div style="flex:1;">
+                <h3>V4: 롤플레잉 (페르소나 부여)</h3>
+                <p>전문가 역할을 부여하여<br>결과물의 품질과 스타일을 향상시킵니다.</p>
+                <pre><code>"""
+# 페르소나
+당신은 20년 경력의 베테랑 작사가이자 음악 프로듀서입니다...
 
-				<section>
-					<h2>5단계: Gemini로<br>상호작용/JS 추가</h2>
-                    <p>HTML 발표의 꽃, 인터랙션!</p>
-                    <pre><code class="bash" style="font-size: 24px;">"Reveal.js에서 3번째 슬라이드에 진입했을 때
-'집중!'이라는 알림창을 띄우는
-JavaScript 코드를 작성해줘."</code></pre>
-                    <p class="fragment" style="margin-top: 30px;">정적인 발표에 동적인 재미를 더할 수 있습니다.</p>
-				</section>
+# 임무
+신인 가수가 녹음한 아래 '데모 STT 결과'에서 '킬링 파트' 가사 3~5 구절을 다듬어 주세요.
+"""</code></pre>
+            </div>
+            <div style="flex:1;">
+                <h3>V5: 자체 검증 (Self-Verification)</h3>
+                <p>결과물 생성 후, 정해진 규칙을 잘 지켰는지<br>스스로 검토하고 수정하게 합니다.</p>
+                <pre><code>"""
+# 작업 프로세스 (매우 중요)
+1. 초안 생성: ...최선의 초안을 생성.
+2. 자체 검증: ...'검증 체크리스트'의 모든 항목을 통과하는지 평가하고 수정.
+3. 최종 결과 출력: 모든 검증을 통과한 최종 결과물만 출력.
+"""</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <div class="slide" id="slide8">
+        <div class="slide-number">8 / 12</div>
+        <div class="slide-content">
+            <h2>평가 방법: 무엇을 측정할 것인가?</h2>
+            <p>좋은 프롬프트란 무엇일까요? 저희는 평가 기준을 <span class="highlight">정량적 지표</span>와 <span class="highlight">정성적 지표</span>로 나누었습니다.</p>
+            <div style="display:flex; gap: 20px;">
+                <div style="flex:1;">
+                    <h3>정량적(Quantitative) 평가</h3>
+                    <p>숫자로 측정 가능한 지표입니다.</p>
+                    <ol>
+                        <li><strong>성능 (Performance)</strong>: 얼마나 정확하게 정답을 찾는가? (TC 성공률)</li>
+                        <li><strong>비용 (Cost)</strong>: 얼마나 저렴하게 사용하는가? (평균 토큰 수)</li>
+                        <li><strong>속도 (Speed)</strong>: 얼마나 빠르게 응답하는가? (평균 응답 시간)</li>
+                    </ol>
+                </div>
+                <div style="flex:1;">
+                    <h3>정성적(Qualitative) 평가</h3>
+                    <p>사람이 직접 판단하는 품질입니다.</p>
+                    <ul>
+                        <li><strong>정확성</strong>: STT 결과의 의미를 잘 반영했는가?</li>
+                        <li><strong>일관성</strong>: 반복 실행해도 결과가 유사하게 나오는가?</li>
+                        <li><strong>유용성</strong>: 생성된 가사가 실제 검색에 도움이 되는가?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-				<section>
-					<h2>6단계: 배포 및 공유</h2>
-					<p>완성된 발표 자료를 세상에 공개하기</p>
-                    <h3 class="fragment" style="margin-top: 40px;">추천: GitHub Pages</h3>
-					<ol class="fragment">
-						<li>GitHub 저장소 생성 및 코드 업로드</li>
-						<li>Settings &rarr; Pages 메뉴에서 배포 설정</li>
-						<li>생성된 URL (<code>*.github.io</code>) 공유</li>
-					</ol>
-				</section>
+    <div class="slide" id="slide9">
+        <div class="slide-number">9 / 12</div>
+        <div class="slide-content">
+            <h2>테스트 방법: 어떻게 검증할 것인가?</h2>
+             <p>체계적인 검증을 위해 자동화된 테스트 파이프라인과 원칙을 수립했습니다.</p>
+            <ul>
+                <li>
+                    <h3>테스트 파이프라인 (자동화 스크립트)</h3>
+                    <p>
+                        1. 미리 정의된 <strong>테스트 케이스</strong>(STT 텍스트, 정답 곡 ID)를 설정합니다.<br>
+                        2. 각 프롬프트 버전(V1~V5)으로 LLM을 호출해 가사를 정규화합니다.<br>
+                        3. 정규화된 가사로 실제 멜론 검색 API를 호출합니다.<br>
+                        4. 검색 결과 상위 3개에 정답 곡 ID가 포함되는지 확인하여 <strong>성공/실패</strong>를 기록합니다.
+                    </p>
+                </li>
+                <li>
+                    <h3>테스트 핵심 원칙</h3>
+                    <p>
+                        - <strong>실제 데이터 활용</strong>: 실제 발화 및 노이즈가 섞인 엣지 케이스를 포함합니다.<br>
+                        - <strong>반복 테스트</strong>: 각 프롬프트를 최소 10회 이상 테스트하여 안정성을 확인합니다.<br>
+                        - <strong>테스트 도구</strong>: 이번 PoC는 <strong>Python 스크립트</strong>를 사용했으며, <strong>Promptfoo</strong>와 같은 오픈소스도 활용 가능합니다.
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="slide" id="slide10">
+        <div class="slide-number">10 / 12</div>
+        <div class="slide-content">
+            <h2>테스트 및 평가 결과</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Prompt Version</th>
+                        <th>Avg. Tokens</th>
+                        <th>Avg. Latency (sec)</th>
+                        <th>TC Success Rate</th>
+                        <th>주요 특징</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>V1_AS_IS</td><td>120.5</td><td>1.25</td><td>33.33%</td><td>가장 저렴하고 빠름 (Baseline)</td></tr>
+                    <tr><td>V2_COT</td><td>210.2</td><td>2.10</td><td>66.67%</td><td>성능 개선, 비용 증가</td></tr>
+                    <tr><td>V3_FEW_SHOT</td><td>185.8</td><td>1.95</td><td>66.67%</td><td>CoT와 유사 성능, 더 효율적</td></tr>
+                    <tr><td>V4_ROLE_PLAYING</td><td>230.1</td><td>2.35</td><td>66.67%</td><td>정성 평가에서 가장 자연스러움</td></tr>
+                    <tr style="background-color: #FFF9C4;"><td><strong>V5_SELF_VERIFY</strong></td><td><strong>255.4</strong></td><td><strong>2.88</strong></td><td><strong>100.00%</strong></td><td><strong>가장 안정적이고 높은 성능</strong></td></tr>
+                </tbody>
+            </table>
+            <h3>주요 인사이트 (Key Insight)</h3>
+            <ul>
+                <li><strong>성능과 비용은 Trade-off 관계</strong>: 정교한 프롬프트(V5)는 성능이 높지만, 토큰 사용량과 응답 시간이 증가합니다.</li>
+                <li><strong>목적에 맞는 선택이 중요</strong>: 실시간성이 중요하다면 V3, 정확성이 최우선이라면 V5를 선택하는 등 서비스 요구사항에 맞는 프롬프트를 선택해야 합니다.</li>
+            </ul>
+        </div>
+    </div>
 
-				<section>
-					<h2>전문가 팁 & 주의사항</h2>
-					<ul>
-						<li class="fragment"><strong>반복과 개선:</strong> 한 번에 완벽을 기대하지 말고, 대화하며 결과물 다듬기</li>
-						<li class="fragment"><strong>사실 확인:</strong> AI가 생성한 통계, 전문 정보는 반드시 교차 검증</li>
-						<li class="fragment"><strong>발표자 노트 활용:</strong> <code>&lt;aside class="notes"&gt;</code> 태그와 'S' 키</li>
-						<li class="fragment"><strong>오프라인 대비:</strong> 인터넷이 불안하다면 모든 파일을 로컬에 저장</li>
-					</ul>
-				</section>
+    <div class="slide" id="slide11">
+        <div class="slide-number">11 / 12</div>
+        <div class="slide-content">
+            <h2>결론 및 다음 단계</h2>
+            <div style="font-size: 1.5em; line-height: 2; text-align: center; margin-top: 2em;">
+                <p>프롬프트 엔지니어링은 '감'이 아닌 <span class="highlight">'과학'</span>입니다.</p>
+                <p>명확한 <strong style="color:#FFA000;">가설</strong>을 세우고(설계), <strong style="color:#FFA000;">테스트</strong>하며(자동화), <strong style="color:#FFA000;">평가</strong>하는(정량/정성)<br>체계적인 프로세스가 핵심입니다.</p>
+                <hr style="width: 50%; border: 1px solid #FFECB3; margin: 2em auto;">
+                <p>'완벽한' 프롬프트는 없습니다.<br>오직 우리 서비스의 목표에 맞는 <span class="highlight">'최적의' 프롬프트</span>가 있을 뿐입니다.</p>
+            </div>
+        </div>
+    </div>
 
-				<section>
-					<h2>Q & A</h2>
-					<p style="margin-top: 50px;">질문 있나요?</p>
-				</section>
+    <div class="slide" id="slide12">
+        <div class="slide-number">12 / 12</div>
+        <div style="text-align: center;">
+            <h1 style="font-size: 8em; color: #FFC107;">Q&A</h1>
+            <p class="subtitle" style="font-size: 2em; margin-top: 1em;">들어주셔서 감사합니다.</p>
+        </div>
+    </div>
 
-			</div>
-		</div>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
-
-		<script>
-			// Reveal.js 초기화
-			Reveal.initialize({
-				hash: true,
-				plugins: [ RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+</body>
 </html>
