@@ -122,7 +122,7 @@
 
     <div id="presentation-container">
         <div class="slide" id="slide1">
-            <div class="slide-number">1 / 14</div>
+            <div class="slide-number">1 / 15</div>
             <div style="text-align: center;">
                 <h1 style="font-size: 4.5em;">프롬프트 엔지니어링</h1>
                 <p class="subtitle">LLM 기반 음악검색 PoC 활용</p>
@@ -133,7 +133,7 @@
         </div>
 
         <div class="slide" id="slide2">
-            <div class="slide-number">2 / 14</div>
+            <div class="slide-number">2 / 15</div>
             <div class="slide-content">
                 <h2>소개</h2>
                 <ul>
@@ -151,7 +151,7 @@
         </div>
 
         <div class="slide" id="slide3">
-            <div class="slide-number">3 / 14</div>
+            <div class="slide-number">3 / 15</div>
             <div class="slide-content">
                 <h2>프롬프트 엔지니어링이란?</h2>
                 <blockquote>"The application of <strong>science</strong> to the optimum conversion of the <strong>resources</strong> of nature to the <strong>uses</strong> of humankind."<br>- Encyclopedia Britannica</blockquote>
@@ -165,7 +165,7 @@
         </div>
 
         <div class="slide" id="slide4">
-            <div class="slide-number">4 / 14</div>
+            <div class="slide-number">4 / 15</div>
             <div class="slide-content">
                 <h2>LLM 음악검색 프로젝트 소개</h2>
                     <li><strong>목표</strong>: 음원의 일부만으로 원하는 곡을 정확히 찾아 정보 제공하는 것</li>
@@ -187,11 +187,11 @@
         </div>
         
         <div class="slide" id="slide5">
-            <div class="slide-number">5 / 14</div>
+            <div class="slide-number">5 / 15</div>
             <div class="slide-content">
                 <h2>프롬프트 기법 V1: 기본 지시형</h2>
                 <ul>
-                    <li><strong>특징</strong>: 지시사항을  나열하여 지시합니다.</li>
+                    <li><strong>특징</strong>: 지시사항을  나열하여 지시합니다.</li>
                     <li><strong>기대 효과</strong>: 가장 기본적인 성능의 기준선(Baseline) 역할을 합니다.</li>
                 </ul>
                 <h3>V1_AS_IS 프롬프트</h3>
@@ -207,20 +207,19 @@ STT 결과: {stt_result}
         </div>
         
         <div class="slide" id="slide6">
-            <div class="slide-number">6 / 14</div>
+            <div class="slide-number">6 / 15</div>
             <div class="slide-content" style="max-width: 1100px; display:flex; gap: 20px;">
                 <div style="flex:1;">
                     <h3>V2: 사고의 연쇄 (CoT)</h3>
                     <p>복잡한 문제를 단계별로 나누어<br>생각의 흐름을 유도합니다.</p>
-                    <pre><code>
-# 목표
+                    <pre><code># 목표
 아래 'STT 결과'에서 노이즈를 제거하고, 가장 의미 있는 핵심 가사 구절 3개에서 5개를 추출합니다.
 
 # 작업 절차 (단계별로 생각하세요)
-1.  노이즈 식별 및 제거: 'STT 결과'에서 의미 없는 추임새, 반복되는 단어, 발음이 뭉개져 불분명한 부분을 식별하고 제거합니다.
-2.  의미 단위 조합: 남은 단어들을 조합하여 의미가 통하는 3~4 단어 구성의 가사 구절 후보들을 만듭니다.
-3.  핵심 구절 선정: 후보들 중에서 원곡의 핵심 메시지나 멜로디에 가장 잘 어울릴 것 같은 구절 3~5개를 최종 선택합니다.
-4.  최종 출력: 선택된 각 구절을 줄바꿈(\n)으로 구분하여 다른 설명 없이 결과만 출력합니다.
+1.  노이즈 식별 및 제거: 'STT 결과'에서 의미 없는 추임새, 반복되는 단어, 발음이 뭉개져 불분명한 부분을 식별하고 제거합니다.
+2.  의미 단위 조합: 남은 단어들을 조합하여 의미가 통하는 3~4 단어 구성의 가사 구절 후보들을 만듭니다.
+3.  핵심 구절 선정: 후보들 중에서 원곡의 핵심 메시지나 멜로디에 가장 잘 어울릴 것 같은 구절 3~5개를 최종 선택합니다.
+4.  최종 출력: 선택된 각 구절을 줄바꿈(\n)으로 구분하여 다른 설명 없이 결과만 출력합니다.
 
 # STT 결과
 {stt_result}
@@ -256,7 +255,7 @@ STT 결과에서 3~5개의 핵심 구절을 추출하고, 각 구절은 3~4개�
         </div>
 
         <div class="slide" id="slide7">
-            <div class="slide-number">7 / 14</div>
+            <div class="slide-number">7 / 15</div>
             <div class="slide-content" style="max-width: 1100px; display:flex; gap: 20px;">
                 <div style="flex:1;">
                     <h3>V4: 페르소나 부여</h3>
@@ -292,22 +291,22 @@ STT 결과에서 3~5개의 핵심 구절을 추출하고, 각 구절은 3~4개�
 - 설명, 숫자, 특수 기호 없이 오직 정제된 가사만 출력
 
 # 작업 프로세스 (매우 중요)
-1.  초안 생성 위의 'STT 결과'와 '출력 형식'을 바탕으로 최선의 결과물 초안을 내부적으로 생성합니다.
-2.  자체 검증: 생성한 초안이 아래 '검증 체크리스트'의 모든 항목을 통과하는지 스스로 평가하고, 통과하지 못했다면 통과할 때까지 초안을 수정합니다.
-3.  최종 결과 출력: 모든 검증을 통과한 최종 결과물만을 출력합니다. '검증 체크리스트'나 당신의 생각 과정은 절대 출력하지 마세요.
+1.  초안 생성 위의 'STT 결과'와 '출력 형식'을 바탕으로 최선의 결과물 초안을 내부적으로 생성합니다.
+2.  자체 검증: 생성한 초안이 아래 '검증 체크리스트'의 모든 항목을 통과하는지 스스로 평가하고, 통과하지 못했다면 통과할 때까지 초안을 수정합니다.
+3.  최종 결과 출력: 모든 검증을 통과한 최종 결과물만을 출력합니다. '검증 체크리스트'나 당신의 생각 과정은 절대 출력하지 마세요.
 
 # 검증 체크리스트
-1.  추출된 문장의 개수가 3개 이상 5개 이하인가?
-2.  모든 문장이 3개 또는 4개의 단어로만 이루어져 있는가?
-3.  불필요한 조사, 추임새, 불분명한 단어가 모두 제거되었는가?
-4.  결과물이 '출력 형식'을 완벽하게 준수하는가?
+1.  추출된 문장의 개수가 3개 이상 5개 이하인가?
+2.  모든 문장이 3개 또는 4개의 단어로만 이루어져 있는가?
+3.  불필요한 조사, 추임새, 불분명한 단어가 모두 제거되었는가?
+4.  결과물이 '출력 형식'을 완벽하게 준수하는가?
 </code></pre>
                 </div>
             </div>
         </div>
         
         <div class="slide" id="slide8">
-            <div class="slide-number">8 / 14</div>
+            <div class="slide-number">8 / 15</div>
             <div class="slide-content">
                 <h2>평가 방법: 정량적 평가</h2>
                 <p>음악검색 프로젝트에서는 자동화된 측정이 가능한 <span class="highlight">정량적 지표</span>를 핵심 평가 기준으로 삼았습니다.</p>
@@ -324,7 +323,7 @@ STT 결과에서 3~5개의 핵심 구절을 추출하고, 각 구절은 3~4개�
         </div>
 
         <div class="slide" id="slide9">
-            <div class="slide-number">9 / 14</div>
+            <div class="slide-number">9 / 15</div>
             <div class="slide-content">
                 <h2>평가 방법: 정성적 평가</h2>
                 <p>정량적 지표만으로는 평가할 수 없는, 사람이 직접 판단하는 품질 평가 방법입니다.</p>
@@ -336,22 +335,21 @@ STT 결과에서 3~5개의 핵심 구절을 추출하고, 각 구절은 3~4개�
         </div>
 
         <div class="slide" id="slide10">
-            <div class="slide-number">10 / 14</div>
+            <div class="slide-number">10 / 15</div>
             <div class="slide-content">
-                <h2>테스트 1: 프롬프트 기법 비교</h2>
+                <h2>테스트 과정 1: 프롬프트 기법 선정</h2>
+                <p>먼저 5가지 주요 프롬프트 기법(V1~V5)의 성능을 비교하여 <span class="highlight">가장 안정적인 기법</span>을 선정하는 테스트를 진행했습니다.</p>
                 <ul>
-                    <li><h3>테스트 파이프라인</h3>
+                    <li><h3>테스트 방법</h3>
                         <p>
-                            1. 미리 정의된 <strong>테스트 케이스</strong>(STT 텍스트, 정답 곡 ID)를 설정합니다.<br>
-                            2. 각 프롬프트 버전(V1~V5)으로 LLM을 호출해 가사를 정규화합니다.<br>
-                            3. 정규화된 가사로 실제 멜론 검색 API를 호출합니다.<br>
-                            4. 검색 결과 상위 3개에 정답 곡 ID가 포함되는지 확인하여 <strong>성공/실패</strong>를 기록합니다.
+                            1. <strong>테스트 케이스</strong>(STT 텍스트, 정답 곡 ID) 21개 세트 준비<br>
+                            2. 5가지 프롬프트 기법으로 각각 가사 정규화 요청<br>
+                            3. 정규화된 가사로 검색 API를 호출하여 정답 곡 ID 포함 여부 확인 (성공/실패)<br>
+                            4. 성능, 비용(토큰), 속도 지표를 측정
                         </p>
                     </li>
-                    <li><h3>테스트 핵심 원칙</h3>
-                        <p>
-                            - <strong>실제 데이터 활용</strong>: 실제 발화 및 노이즈가 섞인 엣지 케이스를 포함합니다.<br>
-                            - <strong>반복 테스트</strong>: 각 프롬프트를 최소 10회 이상 테스트하여 결과의 신뢰성을 확보합니다.<br>
+                    <li><h3>결과</h3>
+                        <p><strong>'V5: 자체 검증(Self-Verify)'</strong> 기법이 TC 성공률 100%로 가장 우수했으나, 토큰 사용량이 가장 많았습니다.
                         </p>
                     </li>
                 </ul>
@@ -359,23 +357,21 @@ STT 결과에서 3~5개의 핵심 구절을 추출하고, 각 구절은 3~4개�
         </div>
         
         <div class="slide" id="slide11">
-            <div class="slide-number">11 / 14</div>
+            <div class="slide-number">11 / 15</div>
             <div class="slide-content">
-                <h2>테스트 2: 프롬프트 비용 최적화</h2>
-                <p>프롬프트 기법 외에, 프롬프트의 구성 <span class="highlight">언어(한/영)</span>가 결과에 미치는 영향을 확인했습니다.</p>
+                <h2>테스트 과정 2: 한글 프롬프트 최적화</h2>
+                <p>1차 테스트에서 선정한 5가지 프롬프트의 <span class="highlight">비용(토큰)을 절감</span>하기 위해 한글 지시문을 최적화하는 2차 테스트를 진행했습니다.</p>
                 <ul>
-                    <li>
-                        <h3>테스트 가설 및 방법</h3>
+                    <li><h3>테스트 방법</h3>
                         <p>
-                            <strong>가설:</strong> "결과물은 한글이어도, 프롬프트 지시문은 영어로 작성하는 것이 더 효율적일 것이다."<br>
-                            <strong>방법:</strong> 동일한 V1~V5 기법에 대해 지시문을 한글로 작성한 프롬프트(<code>V*-KOR</code>)와 영어로 작성한 프롬프트(<code>V*-ENG</code>)의 성능, 비용, 속도를 비교 측정했습니다.
+                           기존 V1~V5 프롬프트의 내용을 유지하되, 비용을 줄이기 위해 다음과 같이 지시문을 수정했습니다.<br>
+                           - 존댓말 → 반말체로 변경 (예: `~하세요` → `~할 것`)<br>
+                           - 불필요한 부연 설명이나 수식어 제거<br>
+                           - 최대한 간결하고 명확한 단어 사용
                         </p>
                     </li>
-                    <li>
-                        <h3>결과</h3>
-                        <p>
-                            - 전반적으로 <strong>TC 성공률은 큰 차이가 없었습니다.</strong><br>
-                            - 하지만 <strong>토큰 사용</strong> 측면에서는 영문 프롬프트가 한글보다 평균 5~10% 더 효율적인 경향을 보였습니다.<br>
+                     <li><h3>결과</h3>
+                        <p>성능 저하 없이 <span class="highlight">입력 토큰을 평균 15~20% 절감</span>하는 효과를 확인했습니다.
                         </p>
                     </li>
                 </ul>
@@ -383,33 +379,52 @@ STT 결과에서 3~5개의 핵심 구절을 추출하고, 각 구절은 3~4개�
         </div>
 
         <div class="slide" id="slide12">
-            <div class="slide-number">12 / 14</div>
+            <div class="slide-number">12 / 15</div>
             <div class="slide-content">
-                <h2>테스트 및 평가 결과</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Prompt Version</th><th>Avg. Tokens</th><th>Avg. Latency (sec)</th><th>TC Success Rate</th><th>주요 특징</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>V1_AS_IS</td><td>120.5</td><td>1.25</td><td>33.33%</td><td>가장 저렴하고 빠름 (Baseline)</td></tr>
-                        <tr><td>V2_COT</td><td>210.2</td><td>2.10</td><td>66.67%</td><td>성능 개선, 비용 증가</td></tr>
-                        <tr><td>V3_FEW_SHOT</td><td>185.8</td><td>1.95</td><td>66.67%</td><td>CoT와 유사 성능, 더 효율적</td></tr>
-                        <tr><td>V4_ROLE_PLAYING</td><td>230.1</td><td>2.35</td><td>66.67%</td><td>정성 평가에서 가장 자연스러움</td></tr>
-                        <tr style="background-color: #FFF9C4;"><td><strong>V5_SELF_VERIFY</strong></td><td><strong>255.4</strong></td><td><strong>2.88</strong></td><td><strong>100.00%</strong></td><td><strong>가장 안정적이고 높은 성능</strong></td></tr>
-                    </tbody>
-                </table>
-                <h3>주요 인사이트</h3>
+                <h2>테스트 과정 3: 영문 프롬프트 비교</h2>
+                <p>한글 프롬프트의 토큰 계산 방식이 영어보다 비효율적일 수 있다는 가설 하에, <span class="highlight">비용 효율을 극대화</span>하기 위한 마지막 테스트를 진행했습니다.</p>
                 <ul>
-                    <li><strong>성능과 비용은 Trade-off 관계</strong>: 정교한 프롬프트(V5)는 성능이 높지만, 토큰 사용량과 응답 시간이 증가합니다.</li>
-                    <li><strong>목적에 맞는 선택이 중요</strong>: 실시간성이 중요하다면 V3, 정확성이 최우선이라면 V5를 선택하는 등 서비스 요구사항에 맞는 프롬프트를 선택해야 합니다.</li>
+                    <li><h3>테스트 방법</h3>
+                         <p>
+                           2차 테스트에서 최적화된 한글 프롬프트 5종을 <span class="highlight">핵심 의미가 동일한 영문 프롬프트</span>로 번역하여 테스트를 진행했습니다.
+                        </p>
+                    </li>
+                     <li><h3>결과</h3>
+                        <p>
+                           성능은 거의 동일하게 유지되면서, 한글 최적화 버전에 비해 <span class="highlight">입력 토큰을 추가로 5~10% 더 절감</span>할 수 있었습니다.
+                        </p>
+                    </li>
                 </ul>
             </div>
         </div>
 
         <div class="slide" id="slide13">
-            <div class="slide-number">13 / 14</div>
+            <div class="slide-number">13 / 15</div>
+            <div class="slide-content">
+                <h2>최종 평가 결과 (21개 TC)</h2>
+                <p>총 15종의 프롬프트(기법 5종 x 3단계 최적화) 테스트 결과, V5(자체 검증) 기법의 단계별 데이터는 아래와 같습니다.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prompt Version (V5 기준)</th><th>Avg. Tokens</th><th>Avg. Latency (sec)</th><th>TC Success Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>테스트 1 (기본 한글)</td><td>255.4</td><td>2.9 sec</td><td>95.2% (20/21)</td></tr>
+                        <tr style="background-color: #FFF9C4;"><td><strong>테스트 2 (한글 최적화)</strong></td><td><strong>198.1</strong></td><td><strong>2.8 sec</strong></td><td><strong>95.2% (20/21)</strong></td></tr>
+                        <tr><td>테스트 3 (영문 최적화)</td><td>180.5</td><td>2.7 sec</td><td>95.2% (20/21)</td></tr>
+                    </tbody>
+                </table>
+                <h3>주요 인사이트</h3>
+                <ul>
+                    <li><strong>프롬프트 최적화 효과</strong>: 성능 저하 없이 프롬프트 내용과 언어를 변경하는 것만으로 비용(토큰)을 <span class="highlight">약 30% 절감</span>했습니다.</li>
+                    <li><strong>최고의 가성비 프롬프트</strong>: 절대 비용은 '영문 최적화' 버전이 가장 낮았으나, 팀의 유지보수 편의성을 고려하여 <span class="highlight">'한글 최적화' 버전을 최종 채택</span>했습니다.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="slide" id="slide14">
+            <div class="slide-number">14 / 15</div>
             <div class="slide-content">
                 <h2>결론</h2>
                 <div style="font-size: 1.5em; line-height: 2; text-align: center; margin-top: 2em;">
@@ -420,8 +435,8 @@ STT 결과에서 3~5개의 핵심 구절을 추출하고, 각 구절은 3~4개�
             </div>
         </div>
 
-        <div class="slide" id="slide14">
-            <div class="slide-number">14 / 14</div>
+        <div class="slide" id="slide15">
+            <div class="slide-number">15 / 15</div>
             <div style="text-align: center;">
                 <h1 style="font-size: 8em; color: #FFC107;">Q&A</h1>
                 <p class="subtitle" style="font-size: 2em; margin-top: 1em;">경청해주셔서 감사합니다.</p>
