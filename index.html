@@ -165,6 +165,18 @@
         <div class="slide" id="slide4">
             <div class="slide-number">4 / 15</div>
             <div class="slide-content">
+                <h2>결론</h2>
+                <div style="font-size: 1.5em; line-height: 2; text-align: center; margin-top: 2em;">
+                    <p>프롬프트 엔지니어링이란?</p>
+                    <p><strong style="color:#FFA000;">다수의 프롬프트</strong>를 설계해보고<br>정량적 또는 정성적<strong style="color:#FFA000;"> 평가 기준</strong>을 마련한 후에<br><strong style="color:#FFA000;">테스트</strong>를 반복해서 최고의 가성비 프롬프트를 찾는 것입니다.</p>
+                    <hr style="width: 50%; border: 1px solid #FFECB3; margin: 2em auto;">
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide5">
+            <div class="slide-number">5 / 15</div>
+            <div class="slide-content">
                 <h2>LLM 음악검색 프로젝트 소개</h2>
                     <li><strong>목표</strong>: 음원의 일부만으로 원하는 곡을 정확히 찾아 정보 제공하는 것</li>
                     <li><strong>주요 프로세스</strong>
@@ -184,8 +196,8 @@
             </div>
         </div>
         
-        <div class="slide" id="slide5">
-            <div class="slide-number">5 / 15</div>
+        <div class="slide" id="slide6">
+            <div class="slide-number">6 / 15</div>
             <div class="slide-content">
                 <h2>프롬프트 기법 V1: 기본 지시형</h2>
                 <ul>
@@ -203,8 +215,8 @@ STT 결과: {stt_result}
             </div>
         </div>
         
-        <div class="slide" id="slide6">
-            <div class="slide-number">6 / 15</div>
+        <div class="slide" id="slide7">
+            <div class="slide-number">7 / 15</div>
             <div class="slide-content" style="max-width: 1100px; display:flex; gap: 20px;">
                 <div style="flex:1;">
                     <h3>V2: 사고의 연쇄 (CoT)</h3>
@@ -249,8 +261,8 @@ STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
             </div>
         </div>
 
-        <div class="slide" id="slide7">
-            <div class="slide-number">7 / 15</div>
+        <div class="slide" id="slide8">
+            <div class="slide-number">8 / 15</div>
             <div class="slide-content" style="max-width: 1100px; display:flex; gap: 20px;">
                 <div style="flex:1;">
                     <h3>V4: 페르소나 부여</h3>
@@ -295,8 +307,8 @@ STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
             </div>
         </div>
         
-        <div class="slide" id="slide8">
-            <div class="slide-number">8 / 15</div>
+        <div class="slide" id="slide9">
+            <div class="slide-number">9 / 15</div>
             <div class="slide-content">
                 <h2>평가 방법: 정량적 평가</h2>
                 <p>음악검색 프로젝트에서는 자동화된 측정이 가능한 <span class="highlight">정량적 지표</span>를 핵심 평가 기준으로 삼았습니다.</p>
@@ -312,8 +324,8 @@ STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
             </div>
         </div>
 
-        <div class="slide" id="slide9">
-            <div class="slide-number">9 / 15</div>
+        <div class="slide" id="slide10">
+            <div class="slide-number">10 / 15</div>
             <div class="slide-content">
                 <h2>평가 방법: 정성적 평가</h2>
                 <p>정량적 지표만으로는 평가할 수 없는, 사람이 직접 판단하는 품질 평가 방법입니다.</p>
@@ -324,8 +336,8 @@ STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
             </div>
         </div>
 
-        <div class="slide" id="slide10">
-            <div class="slide-number">10 / 15</div>
+        <div class="slide" id="slide11">
+            <div class="slide-number">11 / 15</div>
             <div class="slide-content">
                 <h2>테스트 1: 기본 프롬프트 기법 비교</h2>
                  <p>5가지 프롬프트 기법을 <span class="highlight">21개 테스트 케이스</span>에 적용하여 성능 기준선을 측정했습니다.</p>
@@ -346,8 +358,8 @@ STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
             </div>
         </div>
         
-        <div class="slide" id="slide11">
-            <div class="slide-number">11 / 15</div>
+        <div class="slide" id="slide12">
+            <div class="slide-number">12 / 15</div>
             <div class="slide-content">
                 <h2>테스트 2: 한글 프롬프트 최적화 비교</h2>
                  <h3>성능 저하 없이 평균 <span class="highlight">18%</span>의 비용 절감 효과</h3>
@@ -369,8 +381,8 @@ STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
             </div>
         </div>
 
-        <div class="slide" id="slide12">
-            <div class="slide-number">12 / 15</div>
+        <div class="slide" id="slide13">
+            <div class="slide-number">13 / 15</div>
             <div class="slide-content">
                 <h2>테스트 3: 영문 프롬프트 최종 비교</h2>
                  <h3>영어 프롬프트가 한글 최적화 버전보다 <span class="highlight">약 9%</span>의 비용 절감 효과</h3>
@@ -392,8 +404,8 @@ STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
             </div>
         </div>
         
-        <div class="slide" id="slide13">
-            <div class="slide-number">13 / 15</div>
+        <div class="slide" id="slide14">
+            <div class="slide-number">14 / 15</div>
             <div class="slide-content">
                 <h2>최고의 가성비 프롬프트 선정</h2>
                     <h3><strong class="highlight">V5-ENG-OPT(영문 최적화)</strong> 버전 최종 채택</h3>
@@ -410,18 +422,6 @@ STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
                         <tr style="background-color: #FFF9C4;"><td><strong>V5-ENG-OPT</strong></td><td><strong>181</strong></td><td><strong>95.2%</strong></td><td><strong>최고의 성능 및 비용 효율</strong></td></tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-
-        <div class="slide" id="slide14">
-            <div class="slide-number">14 / 15</div>
-            <div class="slide-content">
-                <h2>결론</h2>
-                <div style="font-size: 1.5em; line-height: 2; text-align: center; margin-top: 2em;">
-                    <p>프롬프트 엔지니어링이란</p>
-                    <p><strong style="color:#FFA000;">다수의 프롬프트</strong>를 설계해보고<br>정량적 또는 정성적<strong style="color:#FFA000;"> 평가 기준</strong>을 마련한 후에<br><strong style="color:#FFA000;">테스트</strong>를 반복해서 최고의 가성비 프롬프트를 찾는 것입니다.</p>
-                    <hr style="width: 50%; border: 1px solid #FFECB3; margin: 2em auto;">
-                </div>
             </div>
         </div>
 
