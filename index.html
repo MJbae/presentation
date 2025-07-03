@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>프롬프트 엔지니어링 (카카오 스타일)</title>
+    <title>프롬프트 엔지니어링 (다크모드)</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
         
-        /* --- [카카오 스타일 적용] 기본 스타일 --- */
+        /* --- [수정] 다크모드 기본 스타일 --- */
         body, html {
             font-family: 'Noto Sans KR', sans-serif;
-            background-color: #FFFFFF; /* 깨끗한 흰색 배경 */
-            color: #191919; /* 가독성 높은 검은색 텍스트 */
+            background-color: #1C1C1E; /* 다크모드 배경 */
+            color: #E5E5E5; /* 기본 텍스트 색상 */
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden; /* 스크롤바 숨기기 */
+            overflow: hidden;
         }
 
         /* --- 슬라이드 스타일 --- */
@@ -40,11 +40,13 @@
             opacity: 1;
         }
         
+        /* --- [수정] 슬라이드 콘텐츠 다크모드 스타일 --- */
         .slide-content {
-            background-color: #FFFFFF;
-            border-radius: 12px; /* 부드러운 라운드 처리 */
+            background-color: #282828; /* 콘텐츠 카드 배경 */
+            border-radius: 12px;
+            border: 1px solid #333; /* 은은한 테두리 */
             padding: 40px 60px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* 부드러운 그림자 효과 */
+            box-shadow: none; /* 다크모드에서는 그림자 제거 */
             width: 100%;
             max-width: 900px;
             max-height: 80vh;
@@ -57,52 +59,27 @@
             right: 40px;
             font-size: 1.2em;
             font-weight: 500;
-            color: #888; /* 중요도 낮은 회색 */
-        }
-
-        /* --- [수정] 최소화된 네비게이션 스타일 --- */
-        .minimal-nav {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-arrow {
-            font-family: monospace;
-            font-size: 24px;
-            color: #ccc;
-            cursor: pointer;
-            padding: 5px 15px;
-            transition: color 0.3s ease;
-            user-select: none; /* 텍스트 선택 방지 */
-        }
-
-        .nav-arrow:hover {
-            color: #333;
+            color: #777; /* 중요도 낮은 회색 */
         }
         
-        /* --- [카카오 스타일 적용] 콘텐츠 스타일 --- */
-        h1, h2, h3 { color: #191919; margin-bottom: 0.5em; }
-        h1 { font-size: 3.5em; text-align: center; }
+        /* --- [수정] 다크모드 콘텐츠 스타일 --- */
+        h1, h2, h3 { color: #FFFFFF; margin-bottom: 0.5em; }
+        h1 { font-size: 3.5em; text-align: center; color: #FEE500; }
         h2 { font-size: 2.2em; border-bottom: 2px solid #FEE500; padding-bottom: 10px; }
-        h3 { font-size: 1.4em; color: #333; }
-        p, li { font-size: 1.1em; line-height: 1.8; }
+        h3 { font-size: 1.4em; color: #E0E0E0; }
+        p, li { font-size: 1.1em; line-height: 1.8; color: #CCCCCC; }
         ul { list-style-type: none; padding-left: 0; }
         li { padding-left: 1.5em; position: relative; }
-        .subtitle { font-size: 1.5em; color: #666; text-align: center; margin-top: 0; }
-        .meta-info { text-align: center; margin-top: 3em; font-size: 1.2em; color: #444; }
-        pre { background-color: #F9F9F9; padding: 1em; border-radius: 8px; border-left: 4px solid #FEE500; white-space: pre-wrap; word-wrap: break-word; font-size: 0.95em; color: #333; }
+        .subtitle { font-size: 1.5em; color: #AAAAAA; text-align: center; margin-top: 0; }
+        .meta-info { text-align: center; margin-top: 3em; font-size: 1.2em; color: #BBBBBB; }
+        pre { background-color: #202020; padding: 1em; border-radius: 8px; border-left: 4px solid #FEE500; white-space: pre-wrap; word-wrap: break-word; font-size: 0.95em; color: #E5E5E5; }
         code { font-family: 'D2Coding', 'Courier New', monospace; }
-        blockquote { border-left: 4px solid #FEE500; padding-left: 1.5em; margin-left: 0; font-style: normal; background-color: #F9F9F9; color: #555; padding-top: 1em; padding-bottom: 1em;}
-        table { width: 100%; border-collapse: collapse; margin-top: 1.5em; border-top: 2px solid #333; }
-        th, td { border-bottom: 1px solid #F2F2F2; padding: 12px 14px; text-align: center; font-size: 0.9em; }
-        th { background-color: #F9F9F9; font-weight: bold; color: #333; }
-        .highlight { background-color: #FEE500; padding: 3px 7px; border-radius: 4px; font-weight: 500; }
-        .tip { font-size: 1em; color: #555; background-color: #F9F9F9; padding: 1.2em; border-radius: 8px; margin-top: 2em; border: 1px solid #F2F2F2;}
+        blockquote { border-left: 4px solid #FEE500; padding-left: 1.5em; margin-left: 0; font-style: normal; background-color: #2C2C2C; color: #CCCCCC; padding-top: 1em; padding-bottom: 1em;}
+        table { width: 100%; border-collapse: collapse; margin-top: 1.5em; border-top: 2px solid #FEE500; }
+        th, td { border-bottom: 1px solid #444444; padding: 12px 14px; text-align: center; font-size: 0.9em; }
+        th { background-color: #333333; font-weight: bold; color: #FFFFFF; }
+        .highlight { background-color: #FEE500; color: #191919; padding: 3px 7px; border-radius: 4px; font-weight: 500; }
+        .tip { font-size: 1em; color: #DDDDDD; background-color: #2F2F2F; padding: 1.2em; border-radius: 8px; margin-top: 2em; border: 1px solid #444444;}
     </style>
 </head>
 <body>
@@ -137,7 +114,7 @@
 
         <div class="slide" id="slide3">
             <div class="slide-number">3 / 15</div>
-            <div class="slide-content">
+             <div class="slide-content">
                 <h2>프롬프트 엔지니어링이란?</h2>
                 <blockquote>"The application of <strong>science</strong> to the optimum conversion of the <strong>resources</strong> of nature to the <strong>uses</strong> of humankind."<br>- Encyclopedia Britannica</blockquote>
                 <p>엔지니어링은 <strong>과학의 응용</strong>으로 <strong>목적</strong>에 맞게 <strong>자원을 최적화</strong>하는 것</p>
@@ -155,7 +132,7 @@
                 <h2>프롬프트 엔지니어링이란?</h2>
                 <div style="font-size: 1.5em; line-height: 2; text-align: center; margin-top: 2em;">
                     <p><strong class="highlight">다수의 프롬프트</strong>를 설계해보고<br>정량적 또는 정성적<strong class="highlight"> 평가 기준</strong>을 마련한 후에<br><strong class="highlight">테스트</strong>를 반복해서 최고의 가성비 프롬프트를 찾는 것입니다.</p>
-                    <hr style="width: 50%; border: 1px solid #F2F2F2; margin: 2em auto;">
+                    <hr style="width: 50%; border: 1px solid #444; margin: 2em auto;">
                 </div>
             </div>
         </div>
@@ -167,11 +144,11 @@
                     <li><strong>목표</strong>: 음원의 일부만으로 원하는 곡을 정확히 찾아 정보 제공하는 것</li>
                     <li><strong>주요 프로세스</strong>
                         <p style="text-align:center; font-size:1.2em; margin-top: 1em;">
-                            <span style="background-color:#F2F2F2; padding: 10px; border-radius: 8px;">음성 입력</span> ➔ 
-                            <span style="background-color:#F2F2F2; padding: 10px; border-radius: 8px;">STT</span> ➔ 
-                            <span style="background-color:#FEE500; padding: 10px; border-radius: 8px; font-weight:bold;">STT 결과 정규화</span> ➔ 
-                            <span style="background-color:#F2F2F2; padding: 10px; border-radius: 8px;">가사 기반 곡 검색</span> ➔ 
-                            <span style="background-color:#F2F2F2; padding: 10px; border-radius: 8px;">결과 제공</span>
+                            <span style="background-color:#444; color:#FFF; padding: 10px; border-radius: 8px;">음성 입력</span> ➔ 
+                            <span style="background-color:#444; color:#FFF; padding: 10px; border-radius: 8px;">STT</span> ➔ 
+                            <span style="background-color:#FEE500; color:#191919; padding: 10px; border-radius: 8px; font-weight:bold;">STT 결과 정규화</span> ➔ 
+                            <span style="background-color:#444; color:#FFF; padding: 10px; border-radius: 8px;">가사 기반 곡 검색</span> ➔ 
+                            <span style="background-color:#444; color:#FFF; padding: 10px; border-radius: 8px;">결과 제공</span>
                         </p>
                     </li>
                 <ul>
@@ -338,7 +315,7 @@ STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
                         <tr><td>V2 (사고의 연쇄)</td><td>210</td><td>2.1s</td><td>85.7% (18/21)</td></tr>
                         <tr><td>V3 (예시 학습)</td><td>186</td><td>2.0s</td><td>90.5% (19/21)</td></tr>
                         <tr><td>V4 (페르소나)</td><td>230</td><td>2.4s</td><td>85.7% (18/21)</td></tr>
-                        <tr style="background-color: #FFFBEA;"><td><strong>V5 (자체 검증)</strong></td><td><strong>255</strong></td><td><strong>2.9s</strong></td><td><strong>95.2% (20/21)</strong></td></tr>
+                        <tr style="background-color: #4a4100;"><td><strong>V5 (자체 검증)</strong></td><td><strong>255</strong></td><td><strong>2.9s</strong></td><td><strong>95.2% (20/21)</strong></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -361,7 +338,7 @@ STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
                         <tr><td>V2-KOR-OPT</td><td><span class="highlight">175 (-17%)</span></td><td>2.0s</td><td>85.7% (18/21)</td></tr>
                         <tr><td>V3-KOR-OPT</td><td><span class="highlight">151 (-19%)</span></td><td>1.9s</td><td>90.5% (19/21)</td></tr>
                         <tr><td>V4-KOR-OPT</td><td><span class="highlight">192 (-17%)</span></td><td>2.2s</td><td>85.7% (18/21)</td></tr>
-                        <tr style="background-color: #FFFBEA;"><td><strong>V5-KOR-OPT</strong></td><td><span class="highlight"><strong>198 (-22%)</strong></span></td><td><strong>2.8s</strong></td><td><strong>95.2% (20/21)</strong></td></tr>
+                        <tr style="background-color: #4a4100;"><td><strong>V5-KOR-OPT</strong></td><td><span class="highlight"><strong>198 (-22%)</strong></span></td><td><strong>2.8s</strong></td><td><strong>95.2% (20/21)</strong></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -384,7 +361,7 @@ STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
                         <tr><td>V2-ENG-OPT</td><td><span class="highlight">162 (-7%)</span></td><td>1.9s</td><td>85.7% (18/21)</td></tr>
                         <tr><td>V3-ENG-OPT</td><td><span class="highlight">138 (-9%)</span></td><td>1.8s</td><td>90.5% (19/21)</td></tr>
                         <tr><td>V4-ENG-OPT</td><td><span class="highlight">175 (-9%)</span></td><td>2.1s</td><td>85.7% (18/21)</td></tr>
-                        <tr style="background-color: #FFFBEA;"><td><strong>V5-ENG-OPT</strong></td><td><span class="highlight"><strong>181 (-9%)</strong></span></td><td><strong>2.7s</strong></td><td><strong>95.2% (20/21)</strong></td></tr>
+                        <tr style="background-color: #4a4100;"><td><strong>V5-ENG-OPT</strong></td><td><span class="highlight"><strong>181 (-9%)</strong></span></td><td><strong>2.7s</strong></td><td><strong>95.2% (20/21)</strong></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -405,7 +382,7 @@ STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
                     <tbody>
                         <tr><td>V5</td><td>255</td><td>95.2%</td><td>가장 높은 비용 (Baseline)</td></tr>
                         <tr><td>V5-KOR-OPT</td><td>198</td><td>95.2%</td><td>준수한 비용 절감, 유지보수 용이</td></tr>
-                        <tr style="background-color: #FFFBEA;"><td><strong>V5-ENG-OPT</strong></td><td><strong>181</strong></td><td><strong>95.2%</strong></td><td><strong>최고의 성능 및 비용 효율</strong></td></tr>
+                        <tr style="background-color: #4a4100;"><td><strong>V5-ENG-OPT</strong></td><td><strong>181</strong></td><td><strong>95.2%</strong></td><td><strong>최고의 성능 및 비용 효율</strong></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -420,68 +397,32 @@ STT 결과에서 3~5개의 핵심 구절(3~4 단어)을 추출.
         </div>
     </div>
 
-    <div class="minimal-nav">
-        <span id="minimal-prev" class="nav-arrow"><</span>
-        <span id="minimal-next" class="nav-arrow">></span>
-    </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const slides = document.querySelectorAll('.slide');
-            // [수정] 새로운 네비게이션 요소 참조
-            const prevBtn = document.getElementById('minimal-prev');
-            const nextBtn = document.getElementById('minimal-next');
-            
             let currentSlide = 0;
             const totalSlides = slides.length;
 
             function showSlide(index) {
-                // 현재 슬라이드를 비활성화
-                slides[currentSlide].classList.remove('active');
+                // 인덱스 범위 확인
+                if (index >= totalSlides || index < 0) {
+                    return;
+                }
                 
-                // 새 슬라이드 인덱스 업데이트
+                slides[currentSlide].classList.remove('active');
                 currentSlide = index;
-
-                // 새 슬라이드를 활성화
                 slides[currentSlide].classList.add('active');
-
-                // 버튼 상태 업데이트
-                updateNavButtons();
             }
-
-            function updateNavButtons() {
-                // 첫 페이지면 '이전' 버튼 숨기기
-                prevBtn.style.display = (currentSlide === 0) ? 'none' : 'inline-block';
-
-                // 마지막 페이지면 '다음' 버튼 숨기기
-                nextBtn.style.display = (currentSlide === totalSlides - 1) ? 'none' : 'inline-block';
-            }
-
-            // '다음' 버튼 클릭 이벤트
-            nextBtn.addEventListener('click', () => {
-                if (currentSlide < totalSlides - 1) {
-                    showSlide(currentSlide + 1);
-                }
-            });
-
-            // '이전' 버튼 클릭 이벤트
-            prevBtn.addEventListener('click', () => {
-                if (currentSlide > 0) {
-                    showSlide(currentSlide - 1);
-                }
-            });
             
-            // 키보드 좌우 화살표로 네비게이션
+            // [수정] 키보드 방향키로만 네비게이션
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowRight') {
-                    // nextBtn이 보이는 경우에만 클릭 이벤트 발생
-                    if (nextBtn.style.display !== 'none') {
-                        nextBtn.click();
+                    if (currentSlide < totalSlides - 1) {
+                        showSlide(currentSlide + 1);
                     }
                 } else if (e.key === 'ArrowLeft') {
-                    // prevBtn이 보이는 경우에만 클릭 이벤트 발생
-                    if (prevBtn.style.display !== 'none') {
-                        prevBtn.click();
+                    if (currentSlide > 0) {
+                        showSlide(currentSlide - 1);
                     }
                 }
             });
