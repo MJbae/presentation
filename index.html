@@ -1,178 +1,178 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>프롬프트 엔지니어링 (다크모드 - 원본 콘텐츠)</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
-        
-        /* --- 다크모드 기본 스타일 --- */
-        body, html {
-            font-family: 'Noto Sans KR', sans-serif;
-            background-color: #1C1C1E; /* 다크모드 배경 */
-            color: #E5E5E5; /* 기본 텍스트 색상 */
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프롬프트 엔지니어링 (다크모드 - 수정본)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        /* --- 다크모드 기본 스타일 --- */
+        body, html {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #1C1C1E; /* 다크모드 배경 */
+            color: #E5E5E5; /* 기본 텍스트 색상 */
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
 
-        /* --- 슬라이드 스타일 (원본 구조 유지) --- */
-        .slide {
-            height: 100%;
-            width: 100%;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2em 4em;
-            box-sizing: border-box;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
+        /* --- 슬라이드 스타일 (원본 구조 유지) --- */
+        .slide {
+            height: 100%;
+            width: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2em 4em;
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
 
-        .slide.active {
-            display: flex;
-            opacity: 1;
-        }
-        
-        /* --- 슬라이드 콘텐츠 다크모드 스타일 --- */
-        .slide-content {
-            background-color: #282828; /* 콘텐츠 카드 배경 */
-            border-radius: 12px;
-            border: 1px solid #333; /* 은은한 테두리 */
-            padding: 40px 60px;
-            box-shadow: none;
-            width: 100%;
-            max-width: 900px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-        
-        .slide-number {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            font-size: 1.2em;
-            font-weight: 500;
-            color: #777;
-        }
-        
-        /* --- 콘텐츠 다크모드 스타일 (원본 구조에 적용) --- */
-        h1, h2, h3 { color: #FFFFFF; margin-bottom: 0.5em; }
-        h1 { font-size: 3.5em; text-align: center; }
-        h2 { font-size: 2.2em; border-bottom: 2px solid #FEE500; padding-bottom: 10px; }
-        h3 { font-size: 1.4em; color: #E0E0E0; margin-top: 1.5em;}
-        p, li { font-size: 1.1em; line-height: 1.8; color: #CCCCCC;}
-        ul { list-style-type: none; padding-left: 0; }
-        li { padding-left: 1.5em; position: relative; }
-        .subtitle { font-size: 1.5em; color: #AAAAAA; text-align: center; margin-top: 0; }
-        .meta-info { text-align: center; margin-top: 3em; font-size: 1.2em; color: #BBBBBB; }
-        pre { background-color: #202020; padding: 1em; border-radius: 8px; border-left: 4px solid #FEE500; white-space: pre-wrap; word-wrap: break-word; font-size: 0.9em; color: #E5E5E5; line-height: 1.7;}
-        code { font-family: 'D2Coding', 'Courier New', monospace; }
-        blockquote { border-left: 4px solid #FEE500; padding-left: 1.5em; margin-left: 0; font-style: normal; background-color: #2C2C2C; color: #CCCCCC; padding-top: 1em; padding-bottom: 1em;}
-        table { width: 100%; border-collapse: collapse; margin-top: 1.5em; border-top: 2px solid #FEE500; }
-        th, td { border-bottom: 1px solid #444444; padding: 12px 14px; text-align: center; font-size: 0.9em; }
-        th { background-color: #333333; font-weight: bold; color: #FFFFFF; }
-        .highlight { background-color: #FEE500; color: #191919; padding: 3px 7px; border-radius: 4px; font-weight: 500; }
-        .tip { font-size: 1em; color: #DDDDDD; background-color: #2F2F2F; padding: 1.2em; border-radius: 8px; margin-top: 2em; border: 1px solid #444444;}
-        
-        /* 테이블 하이라이트 행을 위한 스타일 */
-        .table-highlight-dark {
-            background-color: #4a4100 !important;
-        }
-    </style>
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        /* --- 슬라이드 콘텐츠 다크모드 스타일 --- */
+        .slide-content {
+            background-color: #282828; /* 콘텐츠 카드 배경 */
+            border-radius: 12px;
+            border: 1px solid #333; /* 은은한 테두리 */
+            padding: 40px 60px;
+            box-shadow: none;
+            width: 100%;
+            max-width: 900px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 1.2em;
+            font-weight: 500;
+            color: #777;
+        }
+        
+        /* --- 콘텐츠 다크모드 스타일 (원본 구조에 적용) --- */
+        h1, h2, h3 { color: #FFFFFF; margin-bottom: 0.5em; }
+        h1 { font-size: 3.5em; text-align: center; }
+        h2 { font-size: 2.2em; border-bottom: 2px solid #FEE500; padding-bottom: 10px; }
+        h3 { font-size: 1.4em; color: #E0E0E0; margin-top: 1.5em;}
+        p, li { font-size: 1.1em; line-height: 1.8; color: #CCCCCC;}
+        ul { list-style-type: none; padding-left: 0; }
+        li { padding-left: 1.5em; position: relative; }
+        .subtitle { font-size: 1.5em; color: #AAAAAA; text-align: center; margin-top: 0; }
+        .meta-info { text-align: center; margin-top: 3em; font-size: 1.2em; color: #BBBBBB; }
+        pre { background-color: #202020; padding: 1em; border-radius: 8px; border-left: 4px solid #FEE500; white-space: pre-wrap; word-wrap: break-word; font-size: 0.9em; color: #E5E5E5; line-height: 1.7;}
+        code { font-family: 'D2Coding', 'Courier New', monospace; }
+        blockquote { border-left: 4px solid #FEE500; padding-left: 1.5em; margin-left: 0; font-style: normal; background-color: #2C2C2C; color: #CCCCCC; padding-top: 1em; padding-bottom: 1em;}
+        table { width: 100%; border-collapse: collapse; margin-top: 1.5em; border-top: 2px solid #FEE500; }
+        th, td { border-bottom: 1px solid #444444; padding: 12px 14px; text-align: center; font-size: 0.9em; }
+        th { background-color: #333333; font-weight: bold; color: #FFFFFF; }
+        .highlight { background-color: #FEE500; color: #191919; padding: 3px 7px; border-radius: 4px; font-weight: 500; }
+        .tip { font-size: 1em; color: #DDDDDD; background-color: #2F2F2F; padding: 1.2em; border-radius: 8px; margin-top: 2em; border: 1px solid #444444;}
+        
+        /* 테이블 하이라이트 행을 위한 스타일 */
+        .table-highlight-dark {
+            background-color: #4a4100 !important;
+        }
+    </style>
 </head>
 <body>
-    <div id="presentation-container">
-        <div class="slide" id="slide1">
-            <div class="slide-number">1 / 16</div>
-            <div style="text-align: center;">
-                <h1 style="font-size: 4.5em;">프롬프트 엔지니어링</h1>
-                <p class="subtitle">LLM 기반 음악검색 PoC 활용</p>
-                <div class="meta-info">
-                    <p><strong>AX개발2팀｜ 맥스</strong></p>
-                </div>
-            </div>
-        </div>
+    <div id="presentation-container">
+        <div class="slide" id="slide1">
+            <div class="slide-number">1 / 16</div>
+            <div style="text-align: center;">
+                <h1 style="font-size: 4.5em;">프롬프트 엔지니어링</h1>
+                <p class="subtitle">LLM 기반 음악검색 PoC 활용</p>
+                <div class="meta-info">
+                    <p><strong>AX개발2팀｜ 맥스</strong></p>
+                </div>
+            </div>
+        </div>
 
-        <div class="slide" id="slide2">
-            <div class="slide-number">2 / 16</div>
-            <div class="slide-content">
-                <h2>소개</h2>
-                <ul>
-                    <li><h3>발표자</h3><p style="margin-left: 20px;">카카오 i 플랫폼 위에서 보이스봇과 챗봇 개발<br>AI 기반 콘텐츠 창작 동호회(AI.CON) 활동</p></li>
-                    <li><h3>나눌 이야기</h3>
-                        <ol style="margin-left: 20px; padding-left: 20px;">
-                            <li><strong>엔지니어링 관점의 프롬프팅</strong></li>
-                            <li><strong>프롬프트 평가 및 테스트</strong></li>
-                        </ol>
-                    </li>
-                </ul>
-                <p class="tip">💡 <strong>CoP 운영지원금 팁:</strong> OpenAI API 크레딧을 구매하면 테스트 비용의 부담을 줄일 수 있습니다.</p>
-            </div>
-        </div>
+        <div class="slide" id="slide2">
+            <div class="slide-number">2 / 16</div>
+            <div class="slide-content">
+                <h2>소개</h2>
+                <ul>
+                    <li><h3>발표자</h3><p style="margin-left: 20px;">카카오 i 플랫폼 위에서 보이스봇과 챗봇 개발<br>AI 기반 콘텐츠 창작 동호회(AI.CON) 활동</p></li>
+                    <li><h3>나눌 이야기</h3>
+                        <ol style="margin-left: 20px; padding-left: 20px;">
+                            <li><strong>엔지니어링 관점의 프롬프팅</strong></li>
+                            <li><strong>프롬프트 평가 및 테스트</strong></li>
+                        </ol>
+                    </li>
+                </ul>
+                <p class="tip">💡 <strong>CoP 운영지원금 팁:</strong> OpenAI API 크레딧을 구매하면 테스트 비용의 부담을 줄일 수 있습니다.</p>
+            </div>
+        </div>
 
-        <div class="slide" id="slide3">
-            <div class="slide-number">3 / 16</div>
-            <div class="slide-content">
-                <h2>프롬프트 엔지니어링이란?</h2>
-                <blockquote>"The application of <strong>science</strong> to the optimum conversion of the <strong>resources</strong> of nature to the <strong>uses</strong> of humankind."<br>- Encyclopedia Britannica</blockquote>
-                <p>엔지니어링은 <strong>과학의 응용</strong>으로 <strong>목적</strong>에 맞게 <strong>자원을 최적화</strong>하는 것</p>
-                <ul>
-                    <li><strong>과학의 응용</strong>: 프롬프트 설계 → 평가 → 테스트 </li>
-                    <li><strong>목적</strong>: 정확하고 일관된 출력을 얻는 것</li>
-                    <li><strong>자원의 최적화</strong>: LLM 비용을 최소화하는 것</li>
-                </ul>
-            </div>
-        </div>
+        <div class="slide" id="slide3">
+            <div class="slide-number">3 / 16</div>
+            <div class="slide-content">
+                <h2>프롬프트 엔지니어링이란?</h2>
+                <blockquote>"The application of <strong>science</strong> to the optimum conversion of the <strong>resources</strong> of nature to the <strong>uses</strong> of humankind."<br>- Encyclopedia Britannica</blockquote>
+                <p>엔지니어링은 <strong>과학의 응용</strong>으로 <strong>목적</strong>에 맞게 <strong>자원을 최적화</strong>하는 것</p>
+                <ul>
+                    <li><strong>과학의 응용</strong>: 프롬프트 설계 → 평가 → 테스트 </li>
+                    <li><strong>목적</strong>: 정확하고 일관된 출력을 얻는 것</li>
+                    <li><strong>자원의 최적화</strong>: LLM 비용을 최소화하는 것</li>
+                </ul>
+            </div>
+        </div>
 
-        <div class="slide" id="slide4">
-            <div class="slide-number">4 / 16</div>
-            <div class="slide-content">
-                <h2>프롬프트 엔지니어링이란?</h2>
-                <div style="font-size: 1.5em; line-height: 2; text-align: center; margin-top: 2em;">
-                    <p><strong class="highlight">다수의 프롬프트</strong>를 설계해보고<br>정량적 또는 정성적<strong class="highlight"> 평가 기준</strong>을 마련한 후에<br><strong class="highlight">테스트</strong>를 반복해서 최고의 가성비 프롬프트를 찾는 것입니다.</p>
-                    <hr style="width: 50%; border: 1px solid #444; margin: 2em auto;">
-                </div>
-            </div>
-        </div>
+        <div class="slide" id="slide4">
+            <div class="slide-number">4 / 16</div>
+            <div class="slide-content">
+                <h2>프롬프트 엔지니어링이란?</h2>
+                <div style="font-size: 1.5em; line-height: 2; text-align: center; margin-top: 2em;">
+                    <p><strong class="highlight">다수의 프롬프트</strong>를 설계해보고<br>정량적 또는 정성적<strong class="highlight"> 평가 기준</strong>을 마련한 후에<br><strong class="highlight">테스트</strong>를 반복해서 최고의 가성비 프롬프트를 찾는 것입니다.</p>
+                    <hr style="width: 50%; border: 1px solid #444; margin: 2em auto;">
+                </div>
+            </div>
+        </div>
 
-        <div class="slide" id="slide5">
-            <div class="slide-number">5 / 16</div>
-            <div class="slide-content">
-                <h2>LLM 음악검색 프로젝트 소개</h2>
-                    <li><strong>목표</strong>: 음원의 일부만으로 원하는 곡을 정확히 찾아 정보 제공하는 것</li>
-                    <li><strong>주요 프로세스</strong>
-                        <p style="text-align:center; font-size:1.2em; margin-top: 1em;">
-                            <span style="background-color:#444; color:#FFF; padding: 10px; border-radius: 8px;">음성 입력</span> ➔ 
-                            <span style="background-color:#444; color:#FFF; padding: 10px; border-radius: 8px;">STT</span> ➔ 
-                            <span style="background-color:#FEE500; color:#191919; padding: 10px; border-radius: 8px; font-weight:bold;">STT 결과 정규화</span> ➔ 
-                            <span style="background-color:#444; color:#FFF; padding: 10px; border-radius: 8px;">가사 기반 곡 검색</span> ➔ 
-                            <span style="background-color:#444; color:#FFF; padding: 10px; border-radius: 8px;">결과 제공</span>
-                        </p>
-                    </li>
-                <ul>
-                    <li><strong>핵심 과제</strong>: <span class="highlight">STT 출력 텍스트의 정규화</span>
-                        <p>STT 결과물은 노이즈가 많고 불완전합니다. <br> 예: <code>"배우지만단 말이양 이맘 가는 그대로 지금 내 손을 잡아봐"</code></p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="slide" id="slide6">
-            <div class="slide-number">6 / 16</div>
-            <div class="slide-content">
-                <h2>프롬프트 기법 V1: 기본 지시형</h2>
-                <ul>
-                    <li>명확한 지시사항을 나열합니다.</li>
-                </ul>
-                <h3>V1_AS_IS 프롬프트</h3>
-                <pre><code>#지침
+        <div class="slide" id="slide5">
+            <div class="slide-number">5 / 16</div>
+            <div class="slide-content">
+                <h2>LLM 음악검색 프로젝트 소개</h2>
+                    <li><strong>목표</strong>: 음원의 일부만으로 원하는 곡을 정확히 찾아 정보 제공하는 것</li>
+                    <li><strong>주요 프로세스</strong>
+                        <p style="text-align:center; font-size:1.2em; margin-top: 1em;">
+                            <span style="background-color:#444; color:#FFF; padding: 10px; border-radius: 8px;">음성 입력</span> ➔ 
+              _               <span style="background-color:#444; color:#FFF; padding: 10px; border-radius: 8px;">STT</span> ➔ 
+                            <span style="background-color:#FEE500; color:#191919; padding: 10px; border-radius: 8px; font-weight:bold;">STT 결과 정규화</span> ➔ 
+                            <span style="background-color:#444; color:#FFF; padding: 10px; border-radius: 8px;">가사 기반 곡 검색</span> ➔ 
+                            <span style="background-color:#444; color:#FFF; padding: 10px; border-radius: 8px;">결과 제공</span>
+                        </p>
+                    </li>
+                <ul>
+                    <li><strong>핵심 과제</strong>: <span class="highlight">STT 출력 텍스트의 정규화</span>
+                        <p>STT 결과물은 노이즈가 많고 불완전합니다. <br> 예: <code>"배우지만단 말이양 이맘 가는 그대로 지금 내 손을 잡아봐"</code></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="slide" id="slide6">
+            <div class="slide-number">6 / 16</div>
+            <div class="slide-content">
+                <h2>프롬프트 기법 V1: 기본 지시형</h2>
+                <ul>
+                    <li>명확한 지시사항을 나열합니다.</li>
+                </ul>
+                <h3>V1_AS_IS 프롬프트</h3>
+                <pre><code>#지침
 아래 입력으로 주어진 'STT 결과'로부터 3~5개의 문장을 추출하세요.
 각 문장은 3~4단어로 구성되어야 합니다.
 문장 간 중복이 발생해도 괜찮지만, 불필요한 조사나 불분명한 단어는 제거하세요.
@@ -183,33 +183,33 @@
 
 # 출력 형식
 각 문장을 줄바꿈(\n)으로 구분한 형태로만 출력해주세요.</code></pre>
-            </div>
-        </div>
-        
-        <div class="slide" id="slide7">
-            <div class="slide-number">7 / 16</div>
-            <div class="slide-content" style="max-width: 1100px; display:flex; gap: 20px;">
-                <div style="flex:1;">
-                    <h3>V2: 사고의 연쇄 (CoT)</h3>
-                    <p>복잡한 문제를 단계별로 나누어<br>생각의 흐름을 유도합니다.</p>
-                    <pre><code># 목표
+            </div>
+        </div>
+        
+        <div class="slide" id="slide7">
+            <div class="slide-number">7 / 16</div>
+            <div class="slide-content" style="max-width: 1100px; display:flex; gap: 20px;">
+                <div style="flex:1;">
+                    <h3>V2: 사고의 연쇄 (CoT)</h3>
+                    <p>복잡한 문제를 단계별로 나누어<br>생각의 흐름을 유도합니다.</p>
+                    <pre><code># 목표
 아래 'STT 결과'에서 노이즈를 제거하고, 가장 의미 있는 핵심 가사 구절 3개에서 5개를 추출합니다.
 
 # 작업 절차 (단계별로 생각하세요)
-1.  노이즈 식별 및 제거: 'STT 결과'에서 의미 없는 추임새, 반복되는 단어, 발음이 뭉개져 불분명한 부분을 식별하고 제거합니다.
-2.  의미 단위 조합: 남은 단어들을 조합하여 의미가 통하는 3~4 단어 구성의 가사 구절 후보들을 만듭니다.
-3.  핵심 구절 선정: 후보들 중에서 원곡의 핵심 메시지나 멜로디에 가장 잘 어울릴 것 같은 구절 3~5개를 최종 선택합니다.
-4.  최종 출력: 선택된 각 구절을 줄바꿈(\n)으로 구분하여 다른 설명 없이 결과만 출력합니다.
+1.  노이즈 식별 및 제거: 'STT 결과'에서 의미 없는 추임새, 반복되는 단어, 발음이 뭉개져 불분명한 부분을 식별하고 제거합니다.
+2.  의미 단위 조합: 남은 단어들을 조합하여 의미가 통하는 3~4 단어 구성의 가사 구절 후보들을 만듭니다.
+3.  핵심 구절 선정: 후보들 중에서 원곡의 핵심 메시지나 멜로디에 가장 잘 어울릴 것 같은 구절 3~5개를 최종 선택합니다.
+4.  최종 출력: 선택된 각 구절을 줄바꿈(\n)으로 구분하여 다른 설명 없이 결과만 출력합니다.
 
 # STT 결과
 {stt_result}
 
 </code></pre>
-                </div>
-                <div style="flex:1;">
-                    <h3>V3: 예시 학습 (Few-Shot)</h3>
-                    <p>좋은 결과물의 예시(Shot)를 제공하여<br>원하는 패턴을 학습시킵니다.</p>
-                    <pre><code># 지침
+                </div>
+                <div style="flex:1;">
+                    <h3>V3: 예시 학습 (Few-Shot)</h3>
+                    <p>좋은 결과물의 예시(Shot)를 제공하여<br>원하는 패턴을 학습시킵니다.</p>
+                    <pre><code># 지침
 'STT 결과'에서 3~5개의 핵심 구절을 추출하고, 각 구절은 3~4개의 단어로 구성해주세요. 불필요한 단어는 제거하고, 각 구절을 줄바꿈(\n)으로 구분하여 출력합니다.
 
 ---
@@ -229,17 +229,17 @@
 
 # STT 결과
 {stt_result}</code></pre>
-                </div>
-            </div>
-        </div>
+                </div>
+            </div>
+        </div>
 
-        <div class="slide" id="slide8">
-            <div class="slide-number">8 / 16</div>
-            <div class="slide-content" style="max-width: 1100px; display:flex; gap: 20px;">
-                <div style="flex:1;">
-                    <h3>V4: 페르소나 부여</h3>
-                    <p>전문가 역할을 부여하여<br>결과물의 품질과 스타일을 향상시킵니다.</p>
-                    <pre><code># 페르소나
+        <div class="slide" id="slide8">
+            <div class="slide-number">8 / 16</div>
+            <div class="slide-content" style="max-width: 1100px; display:flex; gap: 20px;">
+                <div style="flex:1;">
+                    <h3>V4: 페르소나 부여</h3>
+                    <p>전문가 역할을 부여하여<br>결과물의 품질과 스타일을 향상시킵니다.</p>
+                    <pre><code># 페르소나
 당신은 20년 경력의 베테랑 작사가이자 음악 프로듀서입니다. 당신의 귀는 아주 사소한 노이즈 속에서도 보석 같은 가사를 찾아내는 데 특화되어 있습니다.
 
 # 임무
@@ -252,11 +252,11 @@
 # STT 데모 결과
 {stt_result}
 </code></pre>
-                </div>
-                <div style="flex:1;">
-                    <h3>V5: 자체 검증 (Self-Verification)</h3>
-                    <p>결과물 생성 후, 정해진 규칙을 잘 지켰는지<br>스스로 검토하고 수정하게 합니다.</p>
-                    <pre><code># 최종 목표
+                </div>
+                <div style="flex:1;">
+                    <h3>V5: 자체 검증 (Self-Verification)</h3>
+                    <p>결과물 생성 후, 정해진 규칙을 잘 지켰는지<br>스스로 검토하고 수정하게 합니다.</p>
+                    <pre><code># 최종 목표
 주어진 'STT 결과'로부터 검색에 사용될 가장 핵심적인 가사 3~5 구절을 추출하여, 지정된 '출력 형식'에 맞춰 반환합니다.
 
 # STT 결과
@@ -269,124 +269,78 @@
 - 설명, 숫자, 특수 기호 없이 오직 정제된 가사만 출력
 
 # 작업 프로세스 (매우 중요)
-1.  초안 생성: 위의 'STT 결과'와 '출력 형식'을 바탕으로 최선의 결과물 초안을 내부적으로 생성합니다.
-2.  자체 검증: 생성한 초안이 아래 '검증 체크리스트'의 모든 항목을 통과하는지 스스로 평가하고, 통과하지 못했다면 통과할 때까지 초안을 수정합니다.
-3.  최종 결과 출력: 모든 검증을 통과한 최종 결과물만을 출력합니다. '검증 체크리스트'나 당신의 생각 과정은 절대 출력하지 마세요.
+1.  초안 생성: 위의 'STT 결과'와 '출력 형식'을 바탕으로 최선의 결과물 초안을 내부적으로 생성합니다.
+2.  자체 검증: 생성한 초안이 아래 '검증 체크리스트'의 모든 항목을 통과하는지 스스로 평가하고, 통과하지 못했다면 통과할 때까지 초안을 수정합니다.
+3.  최종 결과 출력: 모든 검증을 통과한 최종 결과물만을 출력합니다. '검증 체크리스트'나 당신의 생각 과정은 절대 출력하지 마세요.
 
 # 검증 체크리스트
-1.  추출된 문장의 개수가 3개 이상 5개 이하인가? (예/아니오)
-2.  모든 문장이 3개 또는 4개의 단어로만 이루어져 있는가? (예/아니오)
-3.  필요한 조사, 추임새, 불분명한 단어가 모두 제거되었는가? (예/아니오)
-4.  결과물이 '출력 형식'을 완벽하게 준수하는가? (예/아니오)
+1.  추출된 문장의 개수가 3개 이상 5개 이하인가? (예/아니오)
+2.  모든 문장이 3개 또는 4개의 단어로만 이루어져 있는가? (예/아니오)
+3.  필요한 조사, 추임새, 불분명한 단어가 모두 제거되었는가? (예/아니오)
+4.  결과물이 '출력 형식'을 완벽하게 준수하는가? (예/아니오)
 
 </code></pre>
-                </div>
-            </div>
-        </div>
-        
-        <div class="slide" id="slide9">
-            <div class="slide-number">9 / 16</div>
-            <div class="slide-content">
-                <h2>평가 방법: 정량적 평가</h2>
-                <p>음악검색 프로젝트에서는 자동화된 측정이 가능한 <span class="highlight">정량적 지표</span>를 핵심 평가 기준으로 삼았습니다.</p>
-                    <div style="max-width: 500px; margin: 2em auto;">
-                    <h3>주요 정량 지표</h3>
-                    <p>숫자로 명확하게 측정 가능한 품질 및 효율 지표입니다.</p>
-                    <ol>
-                        <li style="padding-left: 2em;"><strong>성능</strong>: 얼마나 정확하게 정답을 찾는가? (TC 성공률)</li>
-                        <li style="padding-left: 2em;"><strong>비용</strong>: 얼마나 저렴하게 사용하는가? (평균 토큰 수)</li>
-                        <li style="padding-left: 2em;"><strong>속도</strong>: 얼마나 빠르게 응답하는가? (평균 응답 시간)</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide" id="slide9">
+            <div class="slide-number">9 / 16</div>
+            <div class="slide-content">
+                <h2>평가 방법: 정량적 평가</h2>
+                <p>음악검색 프로젝트에서는 자동화된 측정이 가능한 <span class="highlight">정량적 지표</span>를 핵심 평가 기준으로 삼았습니다.</p>
+                    <div style="max-width: 500px; margin: 2em auto;">
+                    <h3>주요 정량 지표</h3>
+                    <p>숫자로 명확하게 측정 가능한 품질 및 효율 지표입니다.</p>
+                    <ol>
+                        <li style="padding-left: 2em;"><strong>성능</strong>: 얼마나 정확하게 정답을 찾는가? (TC 성공률)</li>
+                        <li style="padding-left: 2em;"><strong>비용</strong>: 얼마나 저렴하게 사용하는가? (평균 토큰 수)</li>
+                        <li style="padding-left: 2em;"><strong>속도</strong>: 얼마나 빠르게 응답하는가? (평균 응답 시간)</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
 
-        <div class="slide" id="slide10">
-            <div class="slide-number">10 / 16</div>
-            <div class="slide-content">
-                <h2>평가 방법: 정성적 평가</h2>
-                <p>정량적 지표만으로는 평가할 수 없는, 사람이 직접 판단하는 품질 평가 방법입니다.</p>
-                <blockquote>
-                    <strong>정성 평가가 필요한 경우:</strong><br>
-                    소설을 창작하는 AI에 대한 품질을 평가한다면 '문장의 창의성'이나 '소재의 대중성' 등은 <br>사람이 직접 읽고 판단하는 <span class="highlight">정성 평가</span> 없이는 측정하기 어렵습니다.
-                </blockquote>
-            </div>
-        </div>
+        <div class="slide" id="slide10">
+            <div class="slide-number">10 / 16</div>
+            <div class="slide-content">
+                <h2>평가 방법: 정성적 평가</h2>
+                <p>정량적 지표만으로는 평가할 수 없는, 사람이 직접 판단하는 품질 평가 방법입니다.</p>
+                <blockquote>
+                    <strong>정성 평가가 필요한 경우:</strong><br>
+                    소설을 창작하는 AI에 대한 품질을 평가한다면 '문장의 창의성'이나 '소재의 대중성' 등은 <br>사람이 직접 읽고 판단하는 <span class="highlight">정성 평가</span> 없이는 측정하기 어렵습니다.
+                </blockquote>
+            </div>
+        </div>
 
-        <div class="slide" id="slide11">
-            <div class="slide-number">11 / 16</div>
-            <div class="slide-content">
-                <h2>테스트 1: 기본 프롬프트 기법 비교</h2>
-                <p>5가지 프롬프트 기법을 <span class="highlight">24개 테스트 케이스</span>에 적용하여 성능 기준선을 측정했습니다.</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Prompt Version</th><th>Avg. Tokens</th><th>Avg. Latency (sec)</th><th>TC Success Rate</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>V1 (기본 지시)</td><td>193.21</td><td>0.8544</td><td>66.67% (16/24)</td></tr>
-                        <tr class="table-highlight-dark"><td><strong>V2 (사고의 연쇄)</strong></td><td><strong>310.83</strong></td><td><strong>0.6018</strong></td><td><strong>83.33% (20/24)</strong></td></tr>
-                        <tr><td>V3 (예시 학습)</td><td>246.67</td><td>0.6777</td><td>70.83% (17/24)</td></tr>
-                        <tr><td>V4 (페르소나)</td><td>269.08</td><td>0.9326</td><td>29.17% (7/24)</td></tr>
-                        <tr><td>V5 (자체 검증)</td><td>445.25</td><td>0.7430</td><td>62.50% (15/24)</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-        <div class="slide" id="slide12">
-            <div class="slide-number">12 / 16</div>
-            <div class="slide-content">
-                <h2>테스트 2: 한글 프롬프트 비교</h2>
-                <h3>한글 프롬프트 버전별 성능 측정</h3>
-                <p>기본 프롬프트를 한글로 유지하며 최적화를 시도한 버전의 성능입니다.</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Prompt Version</th><th>Avg. Tokens</th><th>Avg. Latency (sec)</th><th>TC Success Rate</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>V1-KOR-OPT</td><td>115.12</td><td>0.9240</td><td>50.00% (12/24)</td></tr>
-                        <tr class="table-highlight-dark"><td><strong>V2-KOR-OPT</strong></td><td><strong>148.46</strong></td><td><strong>0.8444</strong></td><td><strong>66.67% (16/24)</strong></td></tr>
-                        <tr><td>V3-KOR-OPT</td><td>200.42</td><td>0.8275</td><td>66.67% (16/24)</td></tr>
-                        <tr><td>V4-KOR-OPT</td><td>149.46</td><td>0.8103</td><td>29.17% (7/24)</td></tr>
-                        <tr><td>V5-KOR-OPT</td><td>243.92</td><td>0.8188</td><td>62.50% (15/24)</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="slide" id="slide13">
-            <div class="slide-number">13 / 16</div>
-            <div class="slide-content">
-                <h2>테스트 3: 영문 프롬프트 비교</h2>
-                <h3>영문 프롬프트 버전별 성능 측정</h3>
-                <p>프롬프트를 모두 영문으로 번역하여 비용 및 성능 변화를 측정했습니다.</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Prompt Version</th><th>Avg. Tokens</th><th>Avg. Latency (sec)</th><th>TC Success Rate</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>V1-ENG-OPT</td><td>92.50</td><td>0.8687</td><td>79.17% (19/24)</td></tr>
-                        <tr><td>V2-ENG-OPT</td><td>115.25</td><td>0.8120</td><td>58.33% (14/24)</td></tr>
-                        <tr><td>V3-ENG-OPT</td><td>180.96</td><td>0.8088</td><td>79.17% (19/24)</td></tr>
-                        <tr><td>V4-ENG-OPT</td><td>127.46</td><td>0.9337</td><td>25.00% (6/24)</td></tr>
-                        <tr class="table-highlight-dark"><td><strong>V5-ENG-OPT</strong></td><td><strong>207.21</strong></td><td><strong>0.8103</strong></td><td><strong>83.33% (20/24)</strong></td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-        <div class="slide" id="slide14">
-            <div class="slide-number">14 / 16</div>
-            <div class="slide-content">
-                <h2>V5 최적화 프롬프트 비교</h2>
-                <h3>V5-KOR-OPT (한글 최적화)</h3>
-                <pre><code>목표
+        <div class="slide" id="slide11">
+            <div class="slide-number">11 / 16</div>
+            <div class="slide-content">
+                <h2>테스트 1: 기본 프롬프트 기법 비교</h2>
+                <p>5가지 프롬프트 기법을 <span class="highlight">24개 테스트 케이스</span>에 적용하여 성능 기준선을 측정했습니다.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prompt Version</th><th>Avg. Tokens</th><th>Avg. Latency (sec)</th><th>TC Success Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>V1 (기본 지시)</td><td>193.21</td><td>0.8544</td><td>66.67% (16/24)</td></tr>
+                        <tr class="table-highlight-dark"><td><strong>V2 (사고의 연쇄)</strong></td><td><strong>310.83</strong></td><td><strong>0.6018</strong></td><td><strong>83.33% (20/24)</strong></td></tr>
+                        <tr><td>V3 (예시 학습)</td><td>246.67</td><td>0.6777</td><td>70.83% (17/24)</td></tr>
+                        <tr><td>V4 (페르소나)</td><td>269.08</td><td>0.9326</td><td>29.17% (7/24)</td></tr>
+                        <tr><td>V5 (자체 검증)</td><td>445.25</td><td>0.7430</td><td>62.50% (15/24)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="slide" id="slide12">
+            <div class="slide-number">12 / 16</div>
+            <div class="slide-content" style="max-width: 1100px; display:flex; gap: 20px;">
+                <div style="flex:1;">
+                    <h3>V5-KOR-OPT (한글 최적화)</h3>
+                    <pre><code>목표
 'STT 결과'에서 3~5개 핵심 가사 추출 후, '출력 형식'에 맞춰 반환.
 
 출력 형식
@@ -408,9 +362,10 @@
 
 STT 결과
 {stt_result}</code></pre>
-
-                <h3>V5-ENG-OPT (영문 최적화)</h3>
-                <pre><code>Goal: Extract 3-5 key phrases from 'STT Result'. Return in the specified 'Output Format'.
+                </div>
+                <div style="flex:1;">
+                    <h3>V5-ENG-OPT (영문 최적화)</h3>
+                    <pre><code>Goal: Extract 3-5 key phrases from 'STT Result'. Return in the specified 'Output Format'.
 
 Output Format:
 - 3 to 5 lines.
@@ -430,68 +385,120 @@ Checklist:
 4. Format correct? (yes/no)
 
 STT Result: "{stt_result}"</code></pre>
-            </div>
-        </div>
+                </div>
+            </div>
+        </div>
 
-        <div class="slide" id="slide15">
-            <div class="slide-number">15 / 16</div>
-            <div class="slide-content">
-                <h2>최고의 가성비 프롬프트 선정</h2>
-                <h3><strong class="highlight">V5-ENG-OPT(영문 최적화)</strong> 버전 최종 채택</h3>
-                <p>성공률, 비용, 응답 속도 및 향후 유지보수와 기능 확장 용이성을 종합적으로 고려하여 영문 기반의 V5 프롬프트를 최종 선정했습니다.</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Prompt</th><th>Avg. Tokens</th><th>TC Success Rate</th><th>주요 특징</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>V5 (기본)</td><td>207.21</td><td>83.33%</td><td>안정적인 성능, 낮은 토큰 비용</td></tr>
-                        <tr><td>V2-ENG-OPT</td><td>310.83</td><td>83.33%</td><td>최고의 응답 속도, 높은 성공률</td></tr>
-                        <tr class="table-highlight-dark"><td><strong>V5-ENG-OPT</strong></td><td><strong>445.25</strong></td><td><strong>62.50%</strong></td><td><strong>유지보수 및 확장성 고려, 전략적 선택</strong></td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <div class="slide" id="slide13">
+            <div class="slide-number">13 / 16</div>
+            <div class="slide-content">
+                <h2>테스트 2: 한글 프롬프트 비교</h2>
+                <h3>한글 프롬프트 버전별 성능 측정</h3>
+                <p>기본 프롬프트를 한글로 유지하며 최적화를 시도한 버전의 성능입니다.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prompt Version</th><th>Avg. Tokens</th><th>Avg. Latency (sec)</th><th>TC Success Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>V1-KOR-OPT</td><td>115.12</td><td>0.9240</td><td>50.00% (12/24)</td></tr>
+                        <tr class="table-highlight-dark"><td><strong>V2-KOR-OPT</strong></td><td><strong>148.46</strong></td><td><strong>0.8444</strong></td><td><strong>66.67% (16/24)</strong></td></tr>
+                        <tr><td>V3-KOR-OPT</td><td>200.42</td><td>0.8275</td><td>66.67% (16/24)</td></tr>
+                        <tr><td>V4-KOR-OPT</td><td>149.46</td><td>0.8103</td><td>29.17% (7/24)</td></tr>
+                        <tr><td>V5-KOR-OPT</td><td>243.92</td><td>0.8188</td><td>62.50% (15/24)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="slide" id="slide14">
+            <div class="slide-number">14 / 16</div>
+            <div class="slide-content">
+                <h2>테스트 3: 영문 프롬프트 비교</h2>
+                <h3>영문 프롬프트 버전별 성능 측정</h3>
+                <p>프롬프트를 모두 영문으로 번역하여 비용 및 성능 변화를 측정했습니다.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prompt Version</th><th>Avg. Tokens</th><th>Avg. Latency (sec)</th><th>TC Success Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>V1-ENG-OPT</td><td>92.50</td><td>0.8687</td><td>79.17% (19/24)</td></tr>
+                        <tr><td>V2-ENG-OPT</td><td>115.25</td><td>0.8120</td><td>58.33% (14/24)</td></tr>
+                        <tr><td>V3-ENG-OPT</td><td>180.96</td><td>0.8088</td><td>79.17% (19/24)</td></tr>
+                        <tr><td>V4-ENG-OPT</td><td>127.46</td><td>0.9337</td><td>25.00% (6/24)</td></tr>
+                        <tr class="table-highlight-dark"><td><strong>V5-ENG-OPT</strong></td><td><strong>207.21</strong></td><td><strong>0.8103</strong></td><td><strong>83.33% (20/24)</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-        <div class="slide" id="slide16">
-            <div class="slide-number">16 / 16</div>
-            <div style="text-align: center;">
-                <h1 style="font-size: 8em; color: #FEE500;">Q&A</h1>
-                <p class="subtitle" style="font-size: 2em; margin-top: 1em;">경청해주셔서 감사합니다.</p>
-            </div>
-        </div>
-    </div>
+        <div class="slide" id="slide15">
+            <div class="slide-number">15 / 16</div>
+            <div class="slide-content">
+                <h2>최종 프롬프트 선정</h2>
+                <p>총 15개 프롬프트 중 <span class="highlight">성능(성공률)</span>과 <span class="highlight">비용(토큰 수)</span>을 종합적으로 고려하여 상위 5개 버전을 비교했습니다.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prompt Version</th><th>TC Success Rate</th><th>Avg. Tokens</th><th>비고</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>V2 (사고의 연쇄)</td><td><strong>83.33%</strong></td><td>310.83</td><td>성능은 최상이나 비용이 높음</td></tr>
+                        <tr class="table-highlight-dark"><td><strong>V5-ENG-OPT</strong></td><td><strong>83.33%</strong></td><td><strong>207.21</strong></td><td><strong>최고 성능 대비 비용 33% 절감</strong></td></tr>
+                        <tr><td>V1-ENG-OPT</td><td>79.17%</td><td><strong>92.50</strong></td><td>압도적으로 저렴하나 성능이 아쉬움</td></tr>
+                        <tr><td>V3-ENG-OPT</td><td>79.17%</td><td>180.96</td><td>V1 대비 비용은 2배, 성능은 동일</td></tr>
+                        <tr><td>V3 (예시 학습)</td><td>70.83%</td><td>246.67</td><td>낮은 성능과 높은 비용</td></tr>
+                    </tbody>
+                </table>
+                <div class="tip">
+                    <h4>결론: <strong class="highlight">V5-ENG-OPT (영문 최적화)</strong> 최종 채택</h4>
+                    <p style="margin-top: 10px;">V2(사고의 연쇄)와 동일한 최고 성공률(83.33%)을 달성하면서도, 프롬프트를 영문화하고 간소화하여 평균 토큰 사용량을 약 33% 절감했습니다. 가장 저렴한 V1-ENG-OPT보다 성능이 우수하여, 안정적인 성능과 비용 효율을 모두 만족하는 최적의 프롬프트로 최종 선정하였습니다.</p>
+                </div>
+            </div>
+        </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const slides = document.querySelectorAll('.slide');
-            let currentSlide = 0;
-            const totalSlides = slides.length;
+        <div class="slide" id="slide16">
+            <div class="slide-number">16 / 16</div>
+            <div style="text-align: center;">
+                <h1 style="font-size: 8em; color: #FEE500;">Q&A</h1>
+                <p class="subtitle" style="font-size: 2em; margin-top: 1em;">경청해주셔서 감사합니다.</p>
+            </div>
+        </div>
+    </div>
 
-            function showSlide(index) {
-                if (index >= totalSlides || index < 0) {
-                    return;
-                }
-                slides[currentSlide].classList.remove('active');
-                currentSlide = index;
-                slides[currentSlide].classList.add('active');
-            }
-            
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight') {
-                    if (currentSlide < totalSlides - 1) {
-                        showSlide(currentSlide + 1);
-                    }
-                } else if (e.key === 'ArrowLeft') {
-                    if (currentSlide > 0) {
-                        showSlide(currentSlide - 1);
-                    }
-                }
-            });
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+            const totalSlides = slides.length;
 
-            showSlide(0);
-        });
-    </script>
+            function showSlide(index) {
+                if (index >= totalSlides || index < 0) {
+                    return;
+                }
+                slides[currentSlide].classList.remove('active');
+                currentSlide = index;
+                slides[currentSlide].classList.add('active');
+            }
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    if (currentSlide < totalSlides - 1) {
+                        showSlide(currentSlide + 1);
+                    }
+                } else if (e.key === 'ArrowLeft') {
+                    if (currentSlide > 0) {
+                        showSlide(currentSlide - 1);
+                    }
+                }
+            });
+
+            showSlide(0);
+        });
+    </script>
 </body>
 </html>
