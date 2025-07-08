@@ -323,11 +323,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>V1(기본 지시)</td><td>193.21</td><td>0.8544</td><td>66.67% (16/24)</td></tr>
-                        <tr class="table-highlight-dark"><td><strong>V2(사고의 연쇄)</strong></td><td><strong>310.83</strong></td><td><strong>0.6018</strong></td><td><strong>83.33% (20/24)</strong></td></tr>
-                        <tr><td>V3(예시 학습)</td><td>246.67</td><td>0.6777</td><td>70.83% (17/24)</td></tr>
-                        <tr><td>V4(페르소나)</td><td>269.08</td><td>0.9326</td><td>29.17% (7/24)</td></tr>
-                        <tr><td>V5(자체 검증)</td><td>445.25</td><td>0.7430</td><td>62.50% (15/24)</td></tr>
+                        <tr><td>기본 지시</td><td>193.21</td><td>0.8544</td><td>66.67% (16/24)</td></tr>
+                        <tr class="table-highlight-dark"><td><strong>사고의 연쇄</strong></td><td><strong>310.83</strong></td><td><strong>0.6018</strong></td><td><strong>83.33% (20/24)</strong></td></tr>
+                        <tr><td>예시 학습</td><td>246.67</td><td>0.6777</td><td>70.83% (17/24)</td></tr>
+                        <tr><td>페르소나</td><td>269.08</td><td>0.9326</td><td>29.17% (7/24)</td></tr>
+                        <tr><td>자체 검증</td><td>445.25</td><td>0.7430</td><td>62.50% (15/24)</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -339,7 +339,7 @@
                 <h2>V5 최적화 프롬프트 비교</h2>
                 <div style="display: flex; gap: 20px;">
                     <div style="flex: 1;">
-                        <h3>V5-KOR-OPT (한글 최적화)</h3>
+                        <h3>한글 최적화 예시</h3>
                         <pre><code>목표
 'STT 결과'에서 3~5개 핵심 가사 추출 후, '출력 형식'에 맞춰 반환.
 
@@ -364,7 +364,7 @@ STT 결과
 {stt_result}</code></pre>
                     </div>
                     <div style="flex: 1;">
-                        <h3>V5-ENG-OPT (영문 최적화)</h3>
+                        <h3>영문 최적화 예시</h3>
                         <pre><code>Goal: Extract 3-5 key phrases from 'STT Result'. Return in the specified 'Output Format'.
 
 Output Format:
@@ -403,11 +403,11 @@ STT Result: "{stt_result}"</code></pre>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>V1-KOR-OPT(기본 지시)</td><td>115.12</td><td>0.9240</td><td>50.00% (12/24)</td></tr>
-                        <tr class="table-highlight-dark"><td><strong>V2-KOR-OPT(사고의 연쇄)</strong></td><td><strong>148.46</strong></td><td><strong>0.8444</strong></td><td><strong>66.67% (16/24)</strong></td></tr>
-                        <tr><td>V3-KOR-OPT(예시 학습)</td><td>200.42</td><td>0.8275</td><td>66.67% (16/24)</td></tr>
-                        <tr><td>V4-KOR-OPT(페르소나)</td><td>149.46</td><td>0.8103</td><td>29.17% (7/24)</td></tr>
-                        <tr><td>V5-KOR-OPT(자체 검증)</td><td>243.92</td><td>0.8188</td><td>62.50% (15/24)</td></tr>
+                        <tr><td>기본 지시 / 한글 최적화</td><td>115.12</td><td>0.9240</td><td>50.00% (12/24)</td></tr>
+                        <tr class="table-highlight-dark"><td><strong>사고의 연쇄 / 한글 최적화</strong></td><td><strong>148.46</strong></td><td><strong>0.8444</strong></td><td><strong>66.67% (16/24)</strong></td></tr>
+                        <tr><td>예시 학습 / 한글 최적화</td><td>200.42</td><td>0.8275</td><td>66.67% (16/24)</td></tr>
+                        <tr><td>페르소나 / 한글 최적화</td><td>149.46</td><td>0.8103</td><td>29.17% (7/24)</td></tr>
+                        <tr><td>자체 검증 / 한글 최적화</td><td>243.92</td><td>0.8188</td><td>62.50% (15/24)</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -426,11 +426,11 @@ STT Result: "{stt_result}"</code></pre>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>V1-ENG-OPT(기본 지시)</td><td>92.50</td><td>0.8687</td><td>79.17% (19/24)</td></tr>
-                        <tr><td>V2-ENG-OPT(사고의 연쇄)</td><td>115.25</td><td>0.8120</td><td>58.33% (14/24)</td></tr>
-                        <tr><td>V3-ENG-OPT(예시 학습)</td><td>180.96</td><td>0.8088</td><td>79.17% (19/24)</td></tr>
-                        <tr><td>V4-ENG-OPT(페르소나)</td><td>127.46</td><td>0.9337</td><td>25.00% (6/24)</td></tr>
-                        <tr class="table-highlight-dark"><td><strong>V5-ENG-OPT(자체 검증)</strong></td><td><strong>207.21</strong></td><td><strong>0.8103</strong></td><td><strong>83.33% (20/24)</strong></td></tr>
+                        <tr><td>기본 지시 / 영문 최적화</td><td>92.50</td><td>0.8687</td><td>79.17% (19/24)</td></tr>
+                        <tr><td>사고의 연쇄 / 영문 최적화</td><td>115.25</td><td>0.8120</td><td>58.33% (14/24)</td></tr>
+                        <tr><td>예시 학습 / 영문 최적화</td><td>180.96</td><td>0.8088</td><td>79.17% (19/24)</td></tr>
+                        <tr><td>페르소나 / 영문 최적화</td><td>127.46</td><td>0.9337</td><td>25.00% (6/24)</td></tr>
+                        <tr class="table-highlight-dark"><td><strong>자체 검증 / 영문 최적화</strong></td><td><strong>207.21</strong></td><td><strong>0.8103</strong></td><td><strong>83.33% (20/24)</strong></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -440,7 +440,7 @@ STT Result: "{stt_result}"</code></pre>
             <div class="slide-number">15 / 16</div>
             <div class="slide-content">
                 <h2>최종 프롬프트 선정</h2>
-                <h3>V5-ENG-OPT (영문 최적화) 최종 채택</h3>
+                <h3>'자체 검증 / 영문 최적화' 최종 채택</h3>
                 <table>
                     <thead>
                         <tr>
@@ -448,11 +448,11 @@ STT Result: "{stt_result}"</code></pre>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="table-highlight-dark"><td><strong>V5-ENG-OPT(자체 검증)</strong></td><td><strong>83.33%</strong></td><td><strong>207.21</strong></td><td><strong>동일 성능 대비 비용 33% 절감</strong></td></tr>
-                        <tr><td>V2(사고의 연쇄)</td><td><strong>83.33%</strong></td><td>310.83</td><td>성능은 최상이나 비용이 상대적으로 높음</td></tr>
-                        <tr><td>V1-ENG-OPT(기본 지시)</td><td>79.17%</td><td><strong>92.50</strong></td><td>압도적으로 저렴하나 성능이 살짝 아쉬움</td></tr>
-                        <tr><td>V3-ENG-OPT(예시 학습)</td><td>79.17%</td><td>180.96</td><td>V1 대비 비용은 2배, 성능은 동일</td></tr>
-                        <tr class="table-highlight-dark"><td>V4(페르소나)</td><td>29.17%</td><td>269.08</td><td>성능과 비용 모두 매우 아쉬움</td></tr>
+                        <tr class="table-highlight-dark"><td><strong>자체 검증 / 영문 최적화</strong></td><td><strong>83.33%</strong></td><td><strong>207.21</strong></td><td><strong>동일 성능 대비 비용 33% 절감</strong></td></tr>
+                        <tr><td>사고의 연쇄</td><td><strong>83.33%</strong></td><td>310.83</td><td>성능은 최상이나 비용이 상대적으로 높음</td></tr>
+                        <tr><td>기본 지시 / 영문 최적화</td><td>79.17%</td><td><strong>92.50</strong></td><td>압도적으로 저렴하나 성능이 살짝 아쉬움</td></tr>
+                        <tr><td>예시 학습 / 영문 최적화</td><td>79.17%</td><td>180.96</td><td>V1 대비 비용은 2배, 성능은 동일</td></tr>
+                        <tr class="table-highlight-dark"><td>페르소나</td><td>29.17%</td><td>269.08</td><td>성능과 비용 모두 매우 아쉬움</td></tr>
                     </tbody>
                 </table>
             </div>
